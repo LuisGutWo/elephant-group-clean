@@ -1,61 +1,38 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import NextImage from "next/image";
-import { useRouter } from "next/router";
 import gsap from "gsap";
+import styles from "./Loader.module.css";
 
 function Loader() {
-  const router = useRouter();
-  const [logoSrc, setLogoSrc] = useState("/assets/dark/imgs/logo2-dark.webp");
-  const [isLoading, setIsLoading] = useState(true);
+  const [logoSrc, setLogoSrc] = useState("/assets/light/imgs/logo-eg-new.webp");
 
-  useEffect(() => {
-    // Detectar tema basado en la ruta
-    const currentPath = router.asPath;
-    const isDark = currentPath.includes("/dark/");
-
-    // Establecer el logo apropiado
-    setLogoSrc(
-      isDark
-        ? "/assets/dark/imgs/logo2-dark.webp"
-        : "/assets/dark/imgs/logo2-light.webp",
-    );
-
-    return () => {
-      // Cleanup function
-    };
-  }, [router.asPath]);
+  // Referencias mutables para evitar consultas nativas al DOM
+  const loaderWrapRef = useRef(null);
+  const loaderLogoRef = useRef(null);
+  const loaderProgressRef = useRef(null);
 
   useEffect(() => {
     let tl = null;
 
     try {
-      // Configuración inicial optimizada
-      if (document.querySelector(".loader-wrap")) {
-        gsap.set(".loader-wrap", { zIndex: 99999, opacity: 1 });
+      if (loaderWrapRef.current) {
+        gsap.set(loaderWrapRef.current, { zIndex: 99999, opacity: 1 });
       }
-      if (document.querySelector(".loader-logo")) {
-        gsap.set(".loader-logo", { scale: 0.3, opacity: 0, rotation: -10 });
-      }
-      if (document.querySelector(".loader-progress")) {
-        gsap.set(".loader-progress", { width: 0 });
-      }
-      if (document.querySelector(".loader-text")) {
-        gsap.set(".loader-text", { opacity: 0, y: 20 });
-      }
-
-      // Solo crear la animación si existen los elementos principales
-      if (
-        document.querySelector(".loader-logo") &&
-        document.querySelector(".loader-wrap")
-      ) {
-        tl = gsap.timeline({
-          onComplete: () => {
-            setIsLoading(false);
-          },
+      if (loaderLogoRef.current) {
+        gsap.set(loaderLogoRef.current, {
+          scale: 0.3,
+          opacity: 0,
+          rotation: -10,
         });
+      }
+      if (loaderProgressRef.current) {
+        gsap.set(loaderProgressRef.current, { width: 0 });
+      }
 
-        // Animación mejorada del logo
-        tl.to(".loader-logo", {
+      if (loaderWrapRef.current && loaderLogoRef.current) {
+        tl = gsap.timeline();
+
+        tl.to(loaderLogoRef.current, {
           scale: 1,
           opacity: 1,
           rotation: 0,
@@ -63,21 +40,10 @@ function Loader() {
           ease: "elastic.out(1, 0.5)",
           delay: 0.2,
         });
-        if (document.querySelector(".loader-text")) {
+
+        if (loaderProgressRef.current) {
           tl.to(
-            ".loader-text",
-            {
-              opacity: 1,
-              y: 0,
-              duration: 0.3,
-              ease: "power2.out",
-            },
-            "-=0.3",
-          );
-        }
-        if (document.querySelector(".loader-progress")) {
-          tl.to(
-            ".loader-progress",
+            loaderProgressRef.current,
             {
               width: "100%",
               duration: 1.0,
@@ -86,37 +52,30 @@ function Loader() {
             "-=0.1",
           );
         }
-        tl.to(".loader-logo", {
+
+        tl.to(loaderLogoRef.current, {
           scale: 1.05,
           duration: 0.15,
           yoyo: true,
           repeat: 1,
           ease: "power2.inOut",
         });
-        if (document.querySelector(".loader-text")) {
-          tl.to(
-            ".loader-text",
-            {
-              opacity: 0,
-              y: -10,
-              duration: 0.2,
-              ease: "power2.in",
-            },
-            "-=0.1",
-          );
-        }
-        tl.to(".loader-wrap", {
+
+        tl.to(loaderWrapRef.current, {
           opacity: 0,
           duration: 0.5,
           ease: "power2.inOut",
           delay: 0.3,
-        }).to(".loader-wrap", {
+        }).to(loaderWrapRef.current, {
           display: "none",
           zIndex: -1,
         });
-        if (document.querySelector("header")) {
+
+        // Animación de entrada pasiva para el header del layout principal
+        const headerEl = document.querySelector("header");
+        if (headerEl) {
           tl.from(
-            "header",
+            headerEl,
             {
               y: -30,
               opacity: 0,
@@ -126,31 +85,18 @@ function Loader() {
             "-=0.4",
           );
         }
-        if (document.querySelector("header .container")) {
-          tl.from(
-            "header .container",
-            {
-              y: 20,
-              opacity: 0,
-              duration: 0.5,
-              ease: "power2.out",
-            },
-            "-=0.5",
-          );
-        }
       }
     } catch (error) {
-      console.error("Error in Loader component:", error);
-      // Fallback mejorado
+      console.error("Error in Loader component animations:", error);
       setTimeout(() => {
-        const loaderEl = document.querySelector(".loader-wrap");
-        if (loaderEl) {
-          gsap.to(loaderEl, {
+        if (loaderWrapRef.current) {
+          gsap.to(loaderWrapRef.current, {
             opacity: 0,
             duration: 0.5,
             ease: "power2.out",
             onComplete: () => {
-              loaderEl.style.display = "none";
+              if (loaderWrapRef.current)
+                loaderWrapRef.current.style.display = "none";
             },
           });
         }
@@ -158,62 +104,47 @@ function Loader() {
     }
 
     return () => {
-      // Cleanup: kill the timeline if it exists
-      if (tl) {
-        tl.kill();
-      }
+      if (tl) tl.kill();
     };
   }, []);
 
-  // Efecto para precargar la imagen
   useEffect(() => {
     const img = new window.Image();
     img.src = logoSrc;
-    img.onload = () => {
-      console.log("Logo precargado correctamente");
-    };
     img.onerror = () => {
-      console.warn("Error cargando logo, usando fallback");
-      setLogoSrc("/assets/dark/imgs/logo2-dark.webp");
+      console.warn(
+        "Error loading logo asset, falling back to default light logo.",
+      );
+      setLogoSrc("/assets/light/imgs/logo-eg-new.webp");
     };
 
-    // Cleanup function para React
     return () => {
-      img.onload = null;
       img.onerror = null;
     };
   }, [logoSrc]);
 
   return (
-    <div className="loader-wrap">
-      {/* Overlay de fondo */}
-      <div className="loader-overlay"></div>
-
-      {/* Contenido del loader */}
-      <div className="loader-content">
-        <div className="loader-logo">
+    <div
+      ref={loaderWrapRef}
+      className={styles.loaderWrap}
+      role="alert"
+      aria-busy="true"
+      aria-label="Cargando sitio web"
+    >
+      <div className={styles.loaderOverlay}></div>
+      <div className={styles.loaderContent}>
+        <div ref={loaderLogoRef} className={styles.loaderLogo}>
           <NextImage
             src={logoSrc}
-            alt="Logo animado de Elephant Group - Imprenta y servicios gráficos en Valparaíso"
-            className="loader-logo-img"
+            alt="Logo animado de Elephant Group - Servicios gráficos en Valparaíso"
             width={180}
             height={60}
             priority
-            onError={(e) => {
-              console.warn("Error loading image, using fallback");
-              if (
-                e.target &&
-                e.target.src !== "/assets/dark/imgs/logo2-dark.webp"
-              ) {
-                e.target.src = "/assets/dark/imgs/logo2-dark.webp";
-              }
-            }}
+            style={{ objectFit: "contain" }}
           />
         </div>
-
-        {/* Barra de progreso mejorada */}
-        <div className="loader-progress-container">
-          <div className="loader-progress"></div>
+        <div className={styles.loaderProgressContainer}>
+          <div ref={loaderProgressRef} className={styles.loaderProgress}></div>
         </div>
       </div>
     </div>

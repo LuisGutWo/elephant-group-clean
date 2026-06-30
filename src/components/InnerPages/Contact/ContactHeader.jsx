@@ -1,6 +1,6 @@
 import React from "react";
 
-function Header() {
+function ContactHeader() {
   return (
     <header
       className="eg-header-base"
@@ -44,4 +44,4 @@ function Header() {
   );
 }
 
-export default Header;
+export default ContactHeader;

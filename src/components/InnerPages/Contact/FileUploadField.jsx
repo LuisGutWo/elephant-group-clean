@@ -1,66 +1,51 @@
-import React from "react";
-import { Form as RBForm, Col } from "react-bootstrap";
+import React, { useRef } from "react";
+import styles from "./ContactForm.module.css";
 
-const FileUploadField = ({ details, error, onChange }) => {
+function FileUploadField({ onFileSelect, currentFile }) {
+  const fileInputRef = useRef(null);
+  const MAX_FILE_SIZE = 10 * 1024 * 1024; // 10MB
+
+  const handleFileValidation = (e) => {
+    const selectedFile = e.target.files[0];
+    if (!selectedFile) return;
+
+    if (selectedFile.size > MAX_FILE_SIZE) {
+      alert("El archivo excede el tamaño máximo permitido de 10MB.");
+      if (fileInputRef.current) fileInputRef.current.value = "";
+      return;
+    }
+    onFileSelect(selectedFile);
+  };
+
   return (
-    <Col md={12}>
-      <RBForm.Group className="mb-3 mt-2" controlId="file" role="group">
-        <div className="d-flex flex-row justify-content-start align-items-start">
-          <RBForm.Label className="me-3 d-flex flex-column">
-            <span>Adjuntar archivo</span>
-            <small className="text-muted" style={{ fontSize: "0.6rem" }}>
-              PDF (8MB), JPG/PNG (5MB), AI/EPS (10MB)
-            </small>
-          </RBForm.Label>
-          <div className="d-flex flex-column" style={{ width: "60%" }}>
-            <RBForm.Control
-              type="file"
-              accept=".pdf,.jpg,.jpeg,.ai,.eps,.png"
-              onChange={onChange}
-              isInvalid={!!error}
-              aria-label="Adjuntar archivo de diseño"
-              aria-describedby="file-help"
-              style={{
-                border: "none",
-                fontWeight: "500",
-                fontSize: "0.7rem",
-                backgroundColor: "#9191912a",
-              }}
-            />
-            <small id="file-help" className="visually-hidden">
-              Formatos aceptados: PDF hasta 8MB, JPG/PNG hasta 5MB, AI/EPS hasta
-              10MB
-            </small>
-            {details.fileName && !error && (
-              <div
-                className="mt-1 p-2 rounded"
-                role="status"
-                aria-live="polite"
-                style={{
-                  backgroundColor: "#d4edda",
-                  border: "1px solid #c3e6cb",
-                  fontSize: "0.7rem",
-                }}
-              >
-                <div className="d-flex justify-content-between align-items-center">
-                  <span>📎 {details.fileName}</span>
-                  <span className="text-success">
-                    {details.fileSize
-                      ? `${(details.fileSize / 1024 / 1024).toFixed(2)}MB`
-                      : ""}
-                  </span>
-                </div>
-                <small className="text-muted">Archivo listo para enviar</small>
-              </div>
-            )}
-            <RBForm.Control.Feedback type="invalid">
-              {error}
-            </RBForm.Control.Feedback>
-          </div>
-        </div>
-      </RBForm.Group>
-    </Col>
+    <div className={styles.formGroup}>
+      <label htmlFor="form-file" className={styles.label}>
+        Adjuntar Vector o Archivo de Diseño (Opcional - Máx 10MB)
+      </label>
+      <div className={styles.fileUploadContainer}>
+        <input
+          type="file"
+          id="form-file"
+          ref={fileInputRef}
+          onChange={handleFileValidation}
+          className={styles.fileInputHidden}
+          accept=".pdf,.ai,.eps,.png,.jpg,.jpeg"
+        />
+        <button
+          type="button"
+          className={styles.fileTriggerBtn}
+          onClick={() => fileInputRef.current?.click()}
+        >
+          {currentFile ? "Cambiar Archivo" : "Seleccionar Archivo"}
+        </button>
+        <span className={styles.fileNameDisplay}>
+          {currentFile
+            ? currentFile.name
+            : "Ningún archivo seleccionado (.ai, .pdf, .eps, .jpg)"}
+        </span>
+      </div>
+    </div>
   );
-};
+}
 
 export default FileUploadField;

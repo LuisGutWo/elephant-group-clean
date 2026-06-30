@@ -6,4 +6,5 @@ export { default as WhatsAppButton } from "./WhatsAppButton";
 export { default as Footer } from "./Footer";
 export { default as FooterBottom } from "./FooterBottom";
 export { default as FooterImg } from "./FooterImg";
+export { default as Loader } from "./Loader";
 export { default as Layout } from "./Layout";

@@ -7,7 +7,7 @@ import Story from "@/components/InnerPages/About/Story";
 import FooterBottom from "@/components/Main/FooterBottom/FooterBottom";
 import FooterImg from "@/components/Main/FooterImg/FooterImg";
 import Footer from "@/components/Main/Footer";
-import HeaderContact from "@/components/InnerPages/Contact/Header";
+import HeaderContact from "@/components/InnerPages/Contact/ContactHeader";
 
 function QuotePage() {
   useEffect(() => {

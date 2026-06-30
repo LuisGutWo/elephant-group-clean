@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import SeoHead from "@/components/layout/SeoHead";
 import Layout from "@/components/layout/Layout";
 import Navbar from "@/components/Common/MainNavbar";
-import Header from "@/components/InnerPages/Contact/Header";
+import Header from "@/components/InnerPages/Contact/ContactHeader";
 import FooterBottom from "@/components/Main/FooterBottom/FooterBottom";
 import FooterImg from "@/components/Main/FooterImg/FooterImg";
 import Footer from "@/components/Main/Footer";
