@@ -35,7 +35,7 @@
   left: 0;
   width: 100%;
   height: 100%;
-  background-color: rgba(0, 0, 0, 0.4); /* Capa oscura para legibilidad */
+  background-color: rgba(0, 0, 0, 0.4);
   z-index: 2;
 }
 
@@ -56,7 +56,6 @@
   max-width: 800px;
 }
 
-/* Glassmorphism Effect */
 .captionGlass {
   background: rgba(255, 255, 255, 0.05);
   backdrop-filter: blur(10px);
@@ -115,7 +114,6 @@
   transform: translate(2px, -2px);
 }
 
-/* Controles de Navegación del Slider */
 .setting {
   position: absolute;
   bottom: 40px;
@@ -148,7 +146,6 @@
   border-color: #c9961a;
 }
 
-/* Flechas generadas mediante CSS puro */
 .arrowLeftIcon,
 .arrowRightIcon {
   display: block;
@@ -162,6 +159,7 @@
   transform: rotate(-45deg);
   translate: 2px;
 }
+
 .arrowRightIcon {
   transform: rotate(135deg);
   translate: -2px;
@@ -180,18 +178,6 @@
 }
 
 .sliderPrlx :global(.swiper-pagination-current) {
-  color: #c9961a;
-  font-weight: 700;
-  font-size: 1.1rem;
-}
-
-.sliderPrlx :global(.swiper-pagination-current) {
-  color: #c9961a;
-  font-weight: 700;
-  font-size: 1.1rem;
-}
-
-:global(.slider-prlx .swiper-pagination-current) {
   color: #c9961a;
   font-weight: 700;
   font-size: 1.1rem;
@@ -217,7 +203,7 @@
     right: 20px;
   }
 
-  :global(.slider-prlx .swiper-pagination-fraction) {
+  .sliderPrlx :global(.swiper-pagination-fraction) {
     bottom: 35px;
     left: 20px;
   }
