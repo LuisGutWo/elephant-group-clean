@@ -1,11 +1,10 @@
-import React, { useState } from "react";
+import React from "react";
 import Link from "next/link";
 import Image from "next/image";
 import data from "@/data/Main/products.json";
+import styles from "./Products.module.css";
 
 function Products() {
-  const [hoveredCard, setHoveredCard] = useState(null);
-
   if (!data || !Array.isArray(data) || data.length === 0) {
     throw new Error("data is not defined or is empty");
   }
@@ -15,58 +14,50 @@ function Products() {
     ...item,
     keywords: `${item.title.toLowerCase()}`,
     brand: "Elephant Group",
-    availability: "https://schema.org/InStock",
+    availability: "https://schema.org",
     priceRange: item.id <= 3 ? "$15.000 - $45.000" : "$5.000 - $25.000",
   }));
 
   try {
     return (
       <section
-        className="modern-products-section section-padding main-bg"
+        className={styles.productsSection}
         itemScope
-        itemType="https://schema.org/ItemList"
+        itemType="https://schema.org"
         aria-label="Productos publicitarios destacados"
       >
-        <div className="container ontop">
+        <div className={styles.container}>
           {/* Header de sección unificado */}
-          <div className="row d-flex justify-content-center">
-            <div className="col-lg-8 text-center">
-              <div className="mb-80">
-                <span className="eg-section-eyebrow">Bestsellers 2025</span>
-                <h2 className="eg-section-title" itemProp="name">
-                  Productos <span className="accent-text">Publicitarios</span>{" "}
-                  Más Vendidos
-                </h2>
-                <p className="eg-section-description" itemProp="description">
-                  <strong>Tótems</strong>, <strong>pendones roller</strong>,{" "}
-                  <strong>señalética personalizada</strong> y{" "}
-                  <strong>stickers</strong> en Viña del Mar, Valparaiso y V
-                  Region. Los productos más solicitados por empresas para
-                  promoción y branding efectivo.
-                </p>
-                <meta
-                  itemProp="numberOfItems"
-                  content={String(enrichedData.length)}
-                />
-              </div>
-            </div>
+          <div className={styles.header}>
+            <span className={styles.eyebrow}>Bestsellers 2026</span>
+            <h2 className={styles.title} itemProp="name">
+              Productos <span className={styles.accentText}>Publicitarios</span>{" "}
+              Más Vendidos
+            </h2>
+            <p className={styles.description} itemProp="description">
+              <strong>Tótems</strong>, <strong>pendones roller</strong>,{" "}
+              <strong>señalética personalizada</strong> y{" "}
+              <strong>stickers</strong> en Viña del Mar, Valparaíso y V Región.
+              Los productos más solicitados por empresas para promoción y
+              branding efectivo.
+            </p>
+            <meta
+              itemProp="numberOfItems"
+              content={String(enrichedData.length)}
+            />
           </div>
 
           {/* Grid de productos optimizado */}
-          <div className="eg-products-grid">
+          <div className={styles.productsGrid}>
             {enrichedData.map((item, idx) => (
               <article
                 key={item.id}
-                className={`eg-product-card${
-                  hoveredCard === idx ? " hovered" : ""
-                }`}
-                onMouseEnter={() => setHoveredCard(idx)}
-                onMouseLeave={() => setHoveredCard(null)}
+                className={styles.productCard}
                 itemProp="itemListElement"
                 itemScope
-                itemType="https://schema.org/Product"
+                itemType="https://schema.org"
               >
-                <div className="eg-product-image-wrap">
+                <div className={styles.imageWrap}>
                   <Image
                     src={item.image}
                     alt={`${item.title}${
@@ -74,42 +65,39 @@ function Products() {
                     } | Elephant Group Valparaíso, Viña del Mar, V Región`}
                     width={400}
                     height={300}
-                    className="eg-product-image"
+                    className={styles.image}
                     itemProp="image"
-                    style={{
-                      objectFit: "cover",
-                      width: "100%",
-                      height: "100%",
-                    }}
+                    style={{ objectFit: "cover" }}
                     sizes="(max-width: 600px) 100vw, 400px"
                     priority={idx < 3}
                   />
                   <span
-                    className="eg-product-badge"
+                    className={styles.badge}
                     aria-label={`Producto destacado: ${item.title}`}
                   >
                     {item.number}
                   </span>
                 </div>
-                <div className="eg-product-content">
-                  <h3 className="eg-product-title" itemProp="name">
+
+                <div className={styles.content}>
+                  <h3 className={styles.productTitle} itemProp="name">
                     {item.title}
                   </h3>
                   {item.subtitle && (
                     <span
-                      className="eg-product-subtitle"
+                      className={styles.productSubtitle}
                       itemProp="description"
                     >
                       {item.subtitle}
                     </span>
                   )}
-                  <div className="eg-product-meta">
+                  <div className={styles.meta}>
                     <meta itemProp="priceCurrency" content="CLP" />
                   </div>
-                  <div className="eg-product-actions">
+                  <div className={styles.actions}>
                     <Link
                       href="/quote"
-                      className="eg-btn eg-btn-primary"
+                      className={`${styles.btn} ${styles.btnPrimary}`}
                       aria-label={`Solicitar cotización de ${item.title}`}
                       title={`Cotizar ${item.title}`}
                     >
@@ -117,26 +105,27 @@ function Products() {
                     </Link>
                     <Link
                       href="/portfolio"
-                      className="eg-btn eg-btn-secondary"
+                      className={`${styles.btn} ${styles.btnSecondary}`}
                       aria-label={`Ver más productos similares a ${item.title}`}
                       title="Ver catálogo completo de productos"
                     >
                       Ver más
                     </Link>
                   </div>
+
                   {/* SEO meta ocultos */}
-                  <div style={{ display: "none" }}>
+                  <div className={styles.hiddenMeta}>
                     <span
                       itemProp="brand"
                       itemScope
-                      itemType="https://schema.org/Brand"
+                      itemType="https://schema.org"
                     >
                       <span itemProp="name">{item.brand}</span>
                     </span>
                     <div
                       itemProp="offers"
                       itemScope
-                      itemType="https://schema.org/Offer"
+                      itemType="https://schema.org"
                     >
                       <span itemProp="priceCurrency" content="CLP">
                         CLP
@@ -162,28 +151,26 @@ function Products() {
           </div>
 
           {/* Call to action optimizado */}
-          <div className="row mt-80">
-            <div className="col-12 text-center">
-              <div className="modern-cta">
-                <p className="cta-text">
-                  ¿Necesitas <strong>gigantografías</strong>,{" "}
-                  <strong>lienzos</strong> o{" "}
-                  <strong>displays personalizados</strong>?
-                </p>
-                <Link
-                  href="/quote"
-                  className="btn-cta-modern"
-                  aria-label="Solicitar cotización personalizada de productos publicitarios"
-                  title="Cotización gratuita en 24 horas - Elephant Group"
-                >
-                  <span>Solicitar Cotización Gratuita</span>
-                  <div className="btn-glow"></div>
-                </Link>
-                <p className="cta-helper-text">
-                  Respuesta en <strong>24 horas</strong> • Envío a toda la{" "}
-                  <strong>Región de Valparaíso</strong>
-                </p>
-              </div>
+          <div className={styles.ctaWrapper}>
+            <div className={styles.modernCta}>
+              <p className={styles.ctaText}>
+                ¿Necesitas <strong>gigantografías</strong>,{" "}
+                <strong>lienzos</strong> o{" "}
+                <strong>displays personalizados</strong>?
+              </p>
+              <Link
+                href="/quote"
+                className={styles.btnCtaModern}
+                aria-label="Solicitar cotización personalizada de productos publicitarios"
+                title="Cotización gratuita en 24 horas - Elephant Group"
+              >
+                <span>Solicitar Cotización Gratuita</span>
+                <div className={styles.btnGlow}></div>
+              </Link>
+              <p className={styles.ctaHelperText}>
+                Respuesta en <strong>24 horas</strong> • Envío a toda la{" "}
+                <strong>Región de Valparaíso</strong>
+              </p>
             </div>
           </div>
         </div>
@@ -192,7 +179,7 @@ function Products() {
   } catch (error) {
     console.error(error);
     return (
-      <div className="error-container">
+      <div className={styles.errorContainer}>
         <h3>Error al cargar productos</h3>
         <p>Por favor, inténtalo nuevamente.</p>
       </div>

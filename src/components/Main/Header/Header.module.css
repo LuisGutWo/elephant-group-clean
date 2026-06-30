@@ -1,0 +1,212 @@
+.sliderPrlx {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  overflow: hidden;
+  background-color: #000000;
+}
+
+.parallaxSlider {
+  width: 100%;
+  height: 100%;
+}
+
+.slideInner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+}
+
+.bgImg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+}
+
+.bgImg::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.4); /* Capa oscura para legibilidad */
+  z-index: 2;
+}
+
+.container {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 var(--space-md);
+  position: relative;
+  z-index: 3;
+}
+
+.contentGrid {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--space-lg);
+  max-width: 800px;
+}
+
+/* Glassmorphism Effect */
+.captionGlass {
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 16px;
+  padding: var(--space-lg);
+  width: 100%;
+}
+
+.eyebrow {
+  color: #ffffff;
+  font-size: 2.5rem;
+  font-weight: 700;
+  line-height: 1.2;
+  letter-spacing: -0.5px;
+}
+
+.captionButtonContainer {
+  margin-top: var(--space-xs);
+}
+
+.navLink {
+  display: inline-block;
+}
+
+.topNavbarButton {
+  background-color: #c9961a;
+  color: #ffffff;
+  border: none;
+  border-radius: 8px;
+  padding: var(--space-md) var(--space-xl);
+  font-size: 0.9rem;
+  font-weight: 700;
+  letter-spacing: 1px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+  transition: background-color 0.2s ease, transform 0.1s ease;
+  box-shadow: 0 4px 14px rgba(201, 150, 26, 0.4);
+}
+
+.topNavbarButton:hover {
+  background-color: #b08212;
+  transform: translateY(-2px);
+}
+
+.topNavbarButton svg {
+  width: 16px;
+  height: 16px;
+  transition: transform 0.2s ease;
+}
+
+.topNavbarButton:hover svg {
+  transform: translate(2px, -2px);
+}
+
+/* Controles de Navegación del Slider */
+.setting {
+  position: absolute;
+  bottom: 40px;
+  right: 40px;
+  z-index: 10;
+}
+
+.controls {
+  display: flex;
+  gap: var(--space-sm);
+}
+
+.navCtrl {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(5px);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #ffffff;
+  transition: background 0.2s ease, border-color 0.2s ease;
+}
+
+.navCtrl:hover {
+  background: #c9961a;
+  border-color: #c9961a;
+}
+
+/* Flechas generadas mediante CSS puro */
+.arrowLeftIcon,
+.arrowRightIcon {
+  display: block;
+  width: 10px;
+  height: 10px;
+  border-top: 2px solid #ffffff;
+  border-left: 2px solid #ffffff;
+}
+
+.arrowLeftIcon {
+  transform: rotate(-45deg);
+  translatex: 2px;
+}
+.arrowRightIcon {
+  transform: rotate(135deg);
+  translatex: -2px;
+}
+
+/* Inyección de estilos de paginación de Swiper */
+:global(.slider-prlx .swiper-pagination-fraction) {
+  color: rgba(255, 255, 255, 0.6);
+  font-size: 0.85rem;
+  font-family: var(--font-primary);
+  position: absolute;
+  bottom: 55px;
+  left: 40px;
+  width: auto;
+  z-index: 10;
+}
+
+:global(.slider-prlx .swiper-pagination-current) {
+  color: #c9961a;
+  font-weight: 700;
+  font-size: 1.1rem;
+}
+
+/* Responsivo */
+@media (max-width: 768px) {
+  .eyebrow {
+    font-size: 1.8rem;
+  }
+
+  .captionGlass {
+    padding: var(--space-md);
+  }
+
+  .topNavbarButton {
+    padding: var(--space-sm) var(--space-lg);
+    font-size: 0.8rem;
+  }
+
+  .setting {
+    bottom: 20px;
+    right: 20px;
+  }
+
+  :global(.slider-prlx .swiper-pagination-fraction) {
+    bottom: 35px;
+    left: 20px;
+  }
+}

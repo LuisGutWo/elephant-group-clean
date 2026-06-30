@@ -1,0 +1,268 @@
+.footer {
+  width: 100%;
+  background-color: #1a1a1a;
+  color: #ffffff;
+  font-family: var(--font-primary);
+}
+
+.subBg {
+  background-color: #151515;
+  padding-top: var(--space-xl);
+}
+
+.egFooterTop {
+  padding: var(--space-xl) 0;
+}
+
+.container {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 var(--space-md);
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  gap: var(--space-xl);
+}
+
+.egContactCol {
+  flex: 1;
+}
+
+.egContactCol h3 {
+  font-size: 1.2rem;
+  letter-spacing: 2px;
+  margin-bottom: var(--space-lg);
+  color: #c9961a;
+}
+
+.egContactList {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-md);
+}
+
+.egContactList li {
+  display: flex;
+  gap: var(--space-md);
+  align-items: flex-start;
+}
+
+.egIcon {
+  color: #c9961a;
+  flex-shrink: 0;
+  width: 20px;
+  height: 20px;
+}
+
+.egIcon svg {
+  width: 100%;
+  height: 100%;
+}
+
+.egContactList strong {
+  display: block;
+  font-size: 0.9rem;
+  color: #ffffff;
+  margin-bottom: var(--space-xs);
+}
+
+.egContactList div {
+  font-size: 0.85rem;
+  color: #999999;
+}
+
+.egFormCol {
+  flex: 1;
+}
+
+.egFormCard {
+  background-color: #222222;
+  padding: var(--space-lg);
+  border-radius: 8px;
+  border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.egFormCard h4 {
+  font-size: 1rem;
+  letter-spacing: 1px;
+  text-align: right;
+  margin-bottom: var(--space-lg);
+  color: #ffffff;
+}
+
+.egContactForm {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-md);
+}
+
+.inputLabel {
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: #cccccc;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.formInput,
+.formTextarea {
+  width: 100%;
+  background-color: #1a1a1a;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 4px;
+  padding: var(--space-sm);
+  color: #ffffff;
+  font-family: inherit;
+  font-size: 0.9rem;
+  transition: border-color 0.2s ease;
+}
+
+.formInput:focus,
+.formTextarea:focus {
+  outline: none;
+  border-color: #c9961a;
+}
+
+.egFormActions {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-md);
+}
+
+.egBtnPrimary {
+  background-color: #c9961a;
+  color: #ffffff;
+  border: none;
+  border-radius: 4px;
+  padding: var(--space-sm) var(--space-lg);
+  font-size: 0.85rem;
+  font-weight: 700;
+  letter-spacing: 1px;
+  cursor: pointer;
+  min-width: 140px;
+  transition: background-color 0.2s ease;
+}
+
+.egBtnPrimary:hover:not(:disabled) {
+  background-color: #b08212;
+}
+
+.egBtnPrimary:disabled {
+  background-color: #444444;
+  cursor: not-allowed;
+}
+
+.egFooterSocial {
+  width: 100%;
+  text-align: center;
+  margin-top: var(--space-sm);
+}
+
+.egFooterSocial h5 {
+  font-size: 0.85rem;
+  color: #999999;
+  margin-bottom: var(--space-sm);
+}
+
+.egSocialLinks {
+  display: flex;
+  justify-content: center;
+  gap: var(--space-md);
+}
+
+.egSocial {
+  color: #999999;
+  transition: color 0.2s ease;
+}
+
+.egSocial:hover {
+  color: #c9961a;
+}
+
+.errorText {
+  color: #ef4444;
+  font-size: 0.8rem;
+  text-align: center;
+}
+
+.devNotice {
+  color: #c9961a;
+  font-size: 0.8rem;
+  text-align: center;
+  margin-top: var(--space-xs);
+}
+
+/* Modal Accesible Nativo */
+.modalOverlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.6);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 11000;
+}
+
+.modalContent {
+  background-color: #222222;
+  border-radius: 8px;
+  padding: var(--space-lg);
+  width: 90%;
+  max-width: 450px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+}
+
+.successBorder {
+  border-left: 4px solid #22c55e;
+}
+.errorBorder {
+  border-left: 4px solid #ef4444;
+}
+
+.modalHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: var(--space-md);
+}
+
+.modalTitle {
+  margin: 0;
+  font-size: 1.1rem;
+  color: #ffffff;
+}
+
+.modalClose {
+  background: none;
+  border: none;
+  color: #999999;
+  font-size: 1.5rem;
+  cursor: pointer;
+}
+
+.modalBody p {
+  font-size: 0.9rem;
+  color: #cccccc;
+  margin: 0;
+  line-height: 1.4;
+}
+
+/* Responsivo Móvil */
+@media (max-width: 991px) {
+  .container {
+    flex-direction: column;
+    gap: var(--space-xl);
+  }
+
+  .egFormCard h4 {
+    text-align: center;
+  }
+}

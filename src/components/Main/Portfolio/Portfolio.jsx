@@ -1,8 +1,8 @@
-/* eslint-disable @next/next/no-img-element */
 import React from "react";
 import Link from "next/link";
+import Image from "next/image";
+import styles from "./Portfolio.module.css";
 
-// Datos de productos optimizados para SEO
 const portfolioData = [
   {
     id: 1,
@@ -43,22 +43,24 @@ const portfolioData = [
 ];
 
 function Portfolio() {
+  const currentYear = new Date().getFullYear();
+
   const handleImageClick = (imageUrl) => {
-    window.open(imageUrl, "_blank");
+    window.open(imageUrl, "_blank", "noopener noreferrer");
   };
 
   return (
     <section
-      className="eg-portfolio section-padding sub-bg"
+      className={styles.portfolioSection}
       itemScope
-      itemType="https://schema.org/ItemList"
+      itemType="https://schema.org"
       aria-label="Catálogo de implementos publicitarios"
     >
       {/* Schema.org Organization Data */}
       <div
         itemScope
-        itemType="https://schema.org/Organization"
-        style={{ display: "none" }}
+        itemType="https://schema.org"
+        className={styles.hiddenMeta}
       >
         <span itemProp="name">Elephant Group</span>
         <span itemProp="description">
@@ -67,11 +69,7 @@ function Portfolio() {
         </span>
         <span itemProp="telephone">+56951631370</span>
         <span itemProp="areaServed">Viña del Mar, Valparaiso y V Region</span>
-        <div
-          itemProp="address"
-          itemScope
-          itemType="https://schema.org/PostalAddress"
-        >
+        <div itemProp="address" itemScope itemType="https://schema.org">
           <span itemProp="addressLocality">
             Viña del Mar, Valparaiso y V Region
           </span>
@@ -82,166 +80,161 @@ function Portfolio() {
         </div>
       </div>
 
-      <div className="container">
-        {/* Header Section Unificado */}
-        <div className="eg-portfolio-header">
-          <div className="row justify-content-center">
-            <div className="col-lg-8 text-center">
-              <h2 className="eg-section-title" itemProp="name">
-                Nuestros Productos{" "}
-              </h2>
-              <meta
-                itemProp="numberOfItems"
-                content={String(portfolioData.length)}
-              />
-            </div>
-          </div>
+      <div className={styles.container}>
+        <div className={styles.portfolioHeader}>
+          <h2 className={styles.sectionTitle} itemProp="name">
+            Nuestros Productos
+          </h2>
+          <meta
+            itemProp="numberOfItems"
+            content={String(portfolioData.length)}
+          />
         </div>
 
-        {/* Portfolio Grid */}
-        <div className="eg-portfolio-grid">
-          <div className="row justify-content-center g-4">
-            {portfolioData.map((item, index) => (
-              <div
-                key={item.id}
-                className="col-lg-4 col-md-6"
-                itemProp="itemListElement"
-                itemScope
-                itemType="https://schema.org/Product"
-              >
-                <div className="eg-portfolio-card">
-                  <div className="eg-portfolio-image">
-                    <img
-                      src={item.image}
-                      alt={`${item.title} - ${item.subtitle} | Elephant Group Valparaíso`}
-                      loading="lazy"
-                      onClick={() => handleImageClick(item.image)}
-                      itemProp="image"
-                      role="button"
-                      tabIndex="0"
-                      onKeyDown={(e) => {
-                        if (e.key === "Enter" || e.key === " ") {
-                          handleImageClick(item.image);
-                        }
-                      }}
-                      aria-label={`Ver imagen ampliada de ${item.title}`}
-                    />
-                    <div className="eg-portfolio-overlay">
-                      <div
-                        className="eg-portfolio-category"
-                        itemProp="category"
-                      >
-                        {item.category}
-                      </div>
-                    </div>
-                  </div>
-
-                  <div className="eg-portfolio-content text-center">
-                    <div className="eg-portfolio-header-badge">
-                      <h3 className="eg-portfolio-card-title" itemProp="name">
-                        {item.title}
-                      </h3>
-                    </div>
-
-                    <p
-                      className="eg-portfolio-card-description"
-                      itemProp="description"
+        {/* Grid de Portafolio Nativo */}
+        <div className={styles.portfolioGrid}>
+          {portfolioData.map((item, index) => (
+            <div
+              key={item.id}
+              className={styles.gridItem}
+              itemProp="itemListElement"
+              itemScope
+              itemType="https://schema.org"
+            >
+              <div className={styles.portfolioCard}>
+                <div className={styles.portfolioImage}>
+                  <Image
+                    src={item.image}
+                    alt={`${item.title} - ${item.subtitle} | Elephant Group Valparaíso`}
+                    width={400}
+                    height={300}
+                    style={{ objectFit: "cover" }}
+                    onClick={() => handleImageClick(item.image)}
+                    itemProp="image"
+                    role="button"
+                    tabIndex="0"
+                    onKeyDown={(e) => {
+                      if (e.key === "Enter" || e.key === " ") {
+                        handleImageClick(item.image);
+                      }
+                    }}
+                    aria-label={`Ver imagen ampliada de ${item.title}`}
+                  />
+                  <div className={styles.portfolioOverlay}>
+                    <div
+                      className={styles.portfolioCategory}
+                      itemProp="category"
                     >
-                      {item.description}
-                    </p>
-
-                    {/* Schema.org adicional */}
-                    <div style={{ display: "none" }}>
-                      <span
-                        itemProp="brand"
-                        itemScope
-                        itemType="https://schema.org/Brand"
-                      >
-                        <span itemProp="name">{item.brand}</span>
-                      </span>
-                      <div
-                        itemProp="offers"
-                        itemScope
-                        itemType="https://schema.org/AggregateOffer"
-                      >
-                        <span itemProp="priceCurrency" content="CLP">
-                          CLP
-                        </span>
-                        <span
-                          itemProp="lowPrice"
-                          content={item.priceRange.match(/\d+/)?.[0]}
-                        >
-                          {item.priceRange}
-                        </span>
-                        <span
-                          itemProp="availability"
-                          content="https://schema.org/InStock"
-                        >
-                          En Stock
-                        </span>
-                        <span itemProp="priceValidUntil" content="2025-12-31">
-                          2025
-                        </span>
-                      </div>
-                      <div
-                        itemProp="aggregateRating"
-                        itemScope
-                        itemType="https://schema.org/AggregateRating"
-                      >
-                        <span itemProp="ratingValue">4.8</span>
-                        <span itemProp="bestRating">5</span>
-                        <span itemProp="ratingCount">127</span>
-                      </div>
-                      <meta
-                        itemProp="sku"
-                        content={`EG-${item.category.toUpperCase()}-${item.id}`}
-                      />
-                      <meta itemProp="keywords" content={item.keywords} />
-                    </div>
-
-                    <div className="eg-portfolio-actions">
-                      <Link
-                        href="/portfolio"
-                        className="eg-portfolio-btn"
-                        aria-label={`Ver catálogo completo de ${item.title.toLowerCase()} en Viña del Mar, Valparaiso y V Region`}
-                        title={`${item.priceRange} - ${item.title} ${item.subtitle} en Viña del Mar, Valparaiso y V Region`}
-                      >
-                        Ver Catálogo
-                        <svg
-                          width="16"
-                          height="16"
-                          viewBox="0 0 24 24"
-                          fill="none"
-                          aria-hidden="true"
-                        >
-                          <path
-                            d="M7 17L17 7M17 7H7M17 7V17"
-                            stroke="currentColor"
-                            strokeWidth="2"
-                            strokeLinecap="round"
-                            strokeLinejoin="round"
-                          />
-                        </svg>
-                      </Link>
+                      {item.category}
                     </div>
                   </div>
-                  <meta itemProp="position" content={String(index + 1)} />
                 </div>
+
+                <div className={styles.portfolioContent}>
+                  <div className={styles.headerBadge}>
+                    <h3 className={styles.cardTitle} itemProp="name">
+                      {item.title}
+                    </h3>
+                  </div>
+
+                  <p className={styles.cardDescription} itemProp="description">
+                    {item.description}
+                  </p>
+
+                  {/* Schema.org adicional */}
+                  <div className={styles.hiddenMeta}>
+                    <span
+                      itemProp="brand"
+                      itemScope
+                      itemType="https://schema.org"
+                    >
+                      <span itemProp="name">{item.brand}</span>
+                    </span>
+                    <div
+                      itemProp="offers"
+                      itemScope
+                      itemType="https://schema.org"
+                    >
+                      <span itemProp="priceCurrency" content="CLP">
+                        CLP
+                      </span>
+                      <span
+                        itemProp="lowPrice"
+                        content={item.priceRange.match(/\d+/)?.[0]}
+                      >
+                        {item.priceRange}
+                      </span>
+                      <span
+                        itemProp="availability"
+                        content="https://schema.org"
+                      >
+                        En Stock
+                      </span>
+                      <span
+                        itemProp="priceValidUntil"
+                        content={`${currentYear}-12-31`}
+                      >
+                        {currentYear}
+                      </span>
+                    </div>
+                    <div
+                      itemProp="aggregateRating"
+                      itemScope
+                      itemType="https://schema.org"
+                    >
+                      <span itemProp="ratingValue">4.8</span>
+                      <span itemProp="bestRating">5</span>
+                      <span itemProp="ratingCount">127</span>
+                    </div>
+                    <meta
+                      itemProp="sku"
+                      content={`EG-${item.category.toUpperCase()}-${item.id}`}
+                    />
+                    <meta itemProp="keywords" content={item.keywords} />
+                  </div>
+
+                  <div className={styles.portfolioActions}>
+                    <Link
+                      href="/portfolio"
+                      className={styles.portfolioBtn}
+                      aria-label={`Ver catálogo completo de ${item.title.toLowerCase()} en Viña del Mar, Valparaiso y V Region`}
+                      title={`${item.priceRange} - ${item.title} ${item.subtitle} en Viña del Mar, Valparaiso y V Region`}
+                    >
+                      Ver Catálogo
+                      <svg
+                        width="16"
+                        height="16"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        aria-hidden="true"
+                      >
+                        <path
+                          d="M7 17L17 7M17 7H7M17 7V17"
+                          stroke="currentColor"
+                          strokeWidth="2"
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                        />
+                      </svg>
+                    </Link>
+                  </div>
+                </div>
+                <meta itemProp="position" content={String(index + 1)} />
               </div>
-            ))}
-          </div>
+            </div>
+          ))}
         </div>
 
         {/* Breadcrumb Schema.org */}
         <div
           itemScope
-          itemType="https://schema.org/BreadcrumbList"
-          style={{ display: "none" }}
+          itemType="https://schema.org"
+          className={styles.hiddenMeta}
         >
           <div
             itemProp="itemListElement"
             itemScope
-            itemType="https://schema.org/ListItem"
+            itemType="https://schema.org"
           >
             <Link itemProp="item" href="/">
               <span itemProp="name">Inicio</span>
@@ -251,7 +244,7 @@ function Portfolio() {
           <div
             itemProp="itemListElement"
             itemScope
-            itemType="https://schema.org/ListItem"
+            itemType="https://schema.org"
           >
             <Link itemProp="item" href="/portfolio">
               <span itemProp="name">Portafolio</span>

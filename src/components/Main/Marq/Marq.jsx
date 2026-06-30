@@ -1,100 +1,54 @@
 import React from "react";
+import styles from "./Marq.module.css";
 
 function Marq() {
+  const words = [
+    "Impresión",
+    "Corte",
+    "Publicidad",
+    "Adhesivos",
+    "Señaléticas",
+    "Letreros",
+    "Vinilos",
+    "Stickers",
+    "Gráficos",
+    "Reflectivos",
+    "Banners",
+    "Lonas Publicitarias",
+    "Paneles Publicitarios",
+    "Revestimientos Publicitarios",
+  ];
+
   return (
-    <section className="serv-marq">
-      <div className="container-fluid ontop sub-bg rest pt-20 pb-20">
-        <div className="row">
-          <div className="col-12">
-            <div className="main-marq light-text">
-              <div className="slide-har st1">
-                <div className="box non-strok">
-                  <div className="item">
-                    <h4 className="d-flex align-items-center">
-                      <span>Impresion</span>{" "}
-                      <span className="fz-50 ml-50 stroke icon">*</span>
-                    </h4>
-                  </div>
-                  <div className="item">
-                    <h4 className="d-flex align-items-center">
-                      <span>Corte</span>{" "}
-                      <span className="fz-50 ml-50 stroke icon">*</span>
-                    </h4>
-                  </div>
-                  <div className="item">
-                    <h4 className="d-flex align-items-center">
-                      <span>Publicidad</span>{" "}
-                      <span className="fz-50 ml-50 stroke icon">*</span>
-                    </h4>
-                  </div>
-                  <div className="item">
-                    <h4 className="d-flex align-items-center">
-                      <span>Adhesivos</span>{" "}
-                      <span className="fz-50 ml-50 stroke icon">*</span>
-                    </h4>
-                  </div>
-                  <div className="item">
-                    <h4 className="d-flex align-items-center">
-                      <span>Señaleticas</span>{" "}
-                      <span className="fz-50 ml-50 stroke icon">*</span>
-                    </h4>
-                  </div>
-                  <div className="item">
-                    <h4 className="d-flex align-items-center">
-                      <span>Letreros</span>{" "}
-                      <span className="fz-50 ml-50 stroke icon">*</span>
-                    </h4>
-                  </div>
-                  <div className="item">
-                    <h4 className="d-flex align-items-center">
-                      <span>Vinilos</span>{" "}
-                      <span className="fz-50 ml-50 stroke icon">*</span>
-                    </h4>
-                  </div>
-                  <div className="item">
-                    <h4 className="d-flex align-items-center">
-                      <span>Stickers</span>{" "}
-                      <span className="fz-50 ml-50 stroke icon">*</span>
-                    </h4>
-                  </div>
-                  <div className="item">
-                    <h4 className="d-flex align-items-center">
-                      <span>Gráficos</span>{" "}
-                      <span className="fz-50 ml-50 stroke icon">*</span>
-                    </h4>
-                  </div>
-                  <div className="item">
-                    <h4 className="d-flex align-items-center">
-                      <span>Reflectivos</span>{" "}
-                      <span className="fz-50 ml-50 stroke icon">*</span>
-                    </h4>
-                  </div>
-                  <div className="item">
-                    <h4 className="d-flex align-items-center">
-                      <span>Banners</span>{" "}
-                      <span className="fz-50 ml-50 stroke icon">*</span>
-                    </h4>
-                  </div>
-                  <div className="item">
-                    <h4 className="d-flex align-items-center">
-                      <span>Lonas Publicitarias</span>{" "}
-                      <span className="fz-50 ml-50 stroke icon">*</span>
-                    </h4>
-                  </div>
-                  <div className="item">
-                    <h4 className="d-flex align-items-center">
-                      <span>Paneles Publicitarios</span>{" "}
-                      <span className="fz-50 ml-50 stroke icon">*</span>
-                    </h4>
-                  </div>
-                  <div className="item">
-                    <h4 className="d-flex align-items-center">
-                      <span>Revestimientos Publicitarios</span>{" "}
-                      <span className="fz-50 ml-50 stroke icon">*</span>
-                    </h4>
-                  </div>
+    <section className={styles.marqSection}>
+      <div className={styles.container}>
+        <div className={styles.mainMarq}>
+          <div className={styles.slideTrack}>
+            {/* Bloque original */}
+            <div className={styles.slideBlock}>
+              {words.map((word, index) => (
+                <div key={`orig-${index}`} className={styles.item}>
+                  <h4>
+                    <span>{word}</span>
+                    <span className={styles.icon} aria-hidden="true">
+                      *
+                    </span>
+                  </h4>
                 </div>
-              </div>
+              ))}
+            </div>
+            {/* Bloque duplicado para el bucle infinito sin saltos visuales */}
+            <div className={styles.slideBlock} aria-hidden="true">
+              {words.map((word, index) => (
+                <div key={`dup-${index}`} className={styles.item}>
+                  <h4>
+                    <span>{word}</span>
+                    <span className={styles.icon} aria-hidden="true">
+                      *
+                    </span>
+                  </h4>
+                </div>
+              ))}
             </div>
           </div>
         </div>

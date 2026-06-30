@@ -1,0 +1,82 @@
+.marqSection {
+  width: 100%;
+  overflow: hidden;
+  background-color: var(--bg-color);
+}
+
+.container {
+  width: 100%;
+  background-color: #151515; /* Fondo oscuro sutil consistente */
+  padding: var(--space-md) 0;
+  border-top: 1px solid rgba(255, 255, 255, 0.05);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.mainMarq {
+  width: 100%;
+  display: flex;
+}
+
+.slideTrack {
+  display: flex;
+  width: max-content;
+  animation: scrollMarquee 40s linear infinite;
+}
+
+.slideTrack:hover {
+  animation-play-state: paused; /* Pausa amigable al pasar el cursor */
+}
+
+.slideBlock {
+  display: flex;
+  align-items: center;
+}
+
+.item {
+  padding: 0 var(--space-xl);
+}
+
+.item h4 {
+  display: flex;
+  align-items: center;
+  font-size: 1.8rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: #ffffff;
+  white-space: nowrap;
+}
+
+.icon {
+  font-size: 2.2rem;
+  margin-left: var(--space-xl);
+  color: #c9961a;
+  line-height: 1;
+}
+
+@keyframes scrollMarquee {
+  0% {
+    transform: translate3d(0, 0, 0);
+  }
+  100% {
+    transform: translate3d(
+      -50%,
+      0,
+      0
+    ); /* Mueve exactamente la mitad del contenedor duplicado */
+  }
+}
+
+/* Optimización móvil */
+@media (max-width: 768px) {
+  .item h4 {
+    font-size: 1.4rem;
+  }
+  .icon {
+    font-size: 1.8rem;
+    margin-left: var(--space-lg);
+  }
+  .item {
+    padding: 0 var(--space-lg);
+  }
+}

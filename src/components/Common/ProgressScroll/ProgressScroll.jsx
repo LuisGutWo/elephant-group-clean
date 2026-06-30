@@ -1,18 +1,22 @@
 import React, { useEffect } from "react";
 import { progressCircleSvg } from "@/data/Main/icons";
-//= Scripts
 import scrollToTop from "@/common/scrollToTop";
+import styles from "./ProgressScroll.module.css";
 
 const ProgressScroll = () => {
   useEffect(() => {
     const cleanup = scrollToTop();
-
-    // Cleanup function retornada por scrollToTop
     return cleanup;
   }, []);
 
   return (
-    <div className="progress-wrap cursor-pointer">{progressCircleSvg}</div>
+    <div
+      className={styles.progressWrap}
+      role="button"
+      aria-label="Volver al inicio de la página"
+    >
+      {progressCircleSvg}
+    </div>
   );
 };
 

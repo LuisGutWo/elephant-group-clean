@@ -1,0 +1,23 @@
+.footerImageInner {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: var(--bg-color);
+  overflow: hidden;
+  padding: var(--space-md) 0;
+}
+
+.footerMainImage {
+  max-width: 100%;
+  height: auto;
+  object-fit: cover;
+  display: block;
+}
+
+/* Ajustes de optimización para pantallas móviles */
+@media (max-width: 768px) {
+  .footerImageInner {
+    padding: var(--space-sm) 0;
+  }
+}

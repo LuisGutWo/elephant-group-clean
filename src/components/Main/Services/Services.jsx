@@ -1,65 +1,56 @@
 import React from "react";
 import Image from "next/image";
 import Link from "next/link";
-//= Data
 import data from "@/data/Main/services.json";
+import styles from "./Services.module.css";
 
 function Services() {
   return (
-    <section className="services main-bg ontop bord-thin-top bord-thin-bottom">
-      <div className="container-fluid text-center">
+    <section className={styles.servicesSection}>
+      <div className={styles.container}>
         {/* Header de sección unificado */}
-        <div className="row justify-content-center mb-50">
-          <div className="col-lg-8 text-center mb-4">
-            <span className="eg-section-eyebrow">Servicios Destacados</span>
-            <h2 className="eg-section-title">
-              Soluciones Publicitarias Integrales
-            </h2>
-            <p className="eg-section-description">
-              Diseño, fabricación e instalación de implementos publicitarios,
-              señalética, letreros y material POP para empresas en Viña del Mar,
-              Valparaiso y V Region. Servicio profesional y personalizado.
-            </p>
-          </div>
+        <div className={styles.header}>
+          <span className={styles.eyebrow}>Servicios Destacados</span>
+          <h2 className={styles.title}>Soluciones Publicitarias Integrales</h2>
+          <p className={styles.description}>
+            Diseño, fabricación e instalación de implementos publicitarios,
+            señalética, letreros y material POP para empresas en Viña del Mar,
+            Valparaíso y V Región. Servicio profesional y personalizado.
+          </p>
         </div>
-        <div className="row justify-content-center mb-50">
+
+        {/* Grid de servicios nativo */}
+        <div className={styles.servicesGrid}>
           {data.map((item) => (
-            <div className="item-bord col-lg-4 col-md-8" key={item.id}>
-              <Link
-                href="/services"
-                className="d-flex flex-wrap flex-column justify-content-center align-items-center arrow mt-40"
-              >
-                <div className="mb-40">
+            <div className={styles.gridItem} key={item.id}>
+              <Link href="/services" className={styles.serviceLink}>
+                <div className={styles.iconWrap}>
                   <Image
                     src={`/assets/light${item.image}`}
-                    alt="Service Icon Image - Elephant Group"
-                    className="img-fluid w-100 h-100 mb-20"
+                    alt={`Icono de ${item.title} - Elephant Group`}
+                    className={styles.iconImage}
                     width={100}
                     height={100}
-                    style={{
-                      maxWidth: "100px",
-                      maxHeight: "100px",
-                      width: "100%",
-                      height: "auto",
-                    }}
-                    priority={false}
+                    loading="lazy"
                   />
                 </div>
-                <h4
-                  className="mb-15"
-                  key={item.id}
-                  style={{ color: "#f7a800" }}
-                >
-                  {item.title}
-                </h4>
-                <h6 className="mb-15">
+                <h3 className={styles.itemTitle}>{item.title}</h3>
+                <h4 className={styles.itemSubtitle}>
                   {item.subtitle}
-
-                  <span className="dot">
-                    <i className="fa fa-angle-right fs-5 ms-2" />
+                  <span className={styles.arrowDot} aria-hidden="true">
+                    <svg
+                      width="12"
+                      height="12"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      strokeWidth="3"
+                    >
+                      <polyline points="9 18 15 12 9 6" />
+                    </svg>
                   </span>
-                </h6>
-                <p>{item.text}</p>
+                </h4>
+                <p className={styles.itemText}>{item.text}</p>
               </Link>
             </div>
           ))}

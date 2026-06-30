@@ -1,0 +1,125 @@
+.clientsSection {
+  padding: var(--space-xl) 0;
+  background-color: var(--bg-color);
+}
+
+.container {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 var(--space-md);
+}
+
+.header {
+  text-align: center;
+  margin-bottom: var(--space-xl);
+}
+
+.eyebrow {
+  display: block;
+  font-size: 0.85rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  color: #c9961a;
+  margin-bottom: var(--space-sm);
+}
+
+.title {
+  font-size: 2.2rem;
+  font-weight: 700;
+  color: var(--text-color);
+  letter-spacing: 0.5px;
+  margin-bottom: var(--space-sm);
+}
+
+.accent {
+  color: #c9961a;
+}
+
+.description {
+  font-size: 1rem;
+  color: #555555;
+  max-width: 70ch;
+  margin: 0 auto;
+  line-height: 1.5;
+}
+
+.carouselWrap {
+  position: relative;
+  width: 100%;
+}
+
+.carousel {
+  padding: var(--space-sm) 0;
+}
+
+.logoWrap {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100px;
+  padding: var(--space-sm);
+  background-color: transparent;
+  transition: transform 0.3s ease, filter 0.3s ease;
+  filter: grayscale(100%);
+  opacity: 0.6;
+}
+
+.logoWrap:hover {
+  transform: scale(1.05);
+  filter: grayscale(0%);
+  opacity: 1;
+}
+
+.logo {
+  object-fit: contain;
+  width: auto;
+  height: auto;
+  max-width: 100%;
+  max-height: 100%;
+}
+
+/* Esqueleto de Carga (Skeletons) */
+.loadingMinimal {
+  display: flex;
+  justify-content: space-between;
+  gap: var(--space-md);
+  width: 100%;
+}
+
+.skeletonMinimal {
+  flex: 1;
+  height: 80px;
+  background: linear-gradient(90deg, #f2f2f2 25%, #e6e6e6 50%, #f2f2f2 75%);
+  background-size: 200% 100%;
+  animation: loadingAnimation 1.5s infinite;
+  border-radius: 6px;
+}
+
+@keyframes loadingAnimation {
+  0% {
+    background-position: 200% 0;
+  }
+  100% {
+    background-position: -200% 0;
+  }
+}
+
+/* Responsivo */
+@media (max-width: 768px) {
+  .title {
+    font-size: 1.8rem;
+  }
+
+  .loadingMinimal {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media (max-width: 480px) {
+  .loadingMinimal {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}

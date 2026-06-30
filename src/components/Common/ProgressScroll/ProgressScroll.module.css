@@ -1,0 +1,49 @@
+.progressWrap {
+  position: fixed;
+  right: 30px;
+  bottom: 30px;
+  height: 46px;
+  width: 46px;
+  cursor: pointer;
+  display: block;
+  border-radius: 50%;
+  box-shadow: inset 0 0 0 2px rgba(255, 255, 255, 0.2);
+  z-index: 10000;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(15px);
+  transition: all 200ms linear;
+}
+
+/* Nota: Esta clase es activada dinámicamente por la lógica de common/scrollToTop.js */
+.active-progress {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+
+.progressWrap::after {
+  position: absolute;
+  content: "\f062"; /* Icono de flecha arriba si usas FontAwesome */
+  font-family: "Font Awesome 5 Free";
+  font-weight: 900;
+  text-align: center;
+  line-height: 46px;
+  font-size: 16px;
+  color: var(--primary-color);
+  left: 0;
+  top: 0;
+  height: 46px;
+  width: 46px;
+  z-index: 1;
+  transition: all 200ms linear;
+}
+
+.progressWrap svg path {
+  fill: none;
+}
+
+.progressWrap svg {
+  width: 100%;
+  height: 100%;
+}

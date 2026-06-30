@@ -1,5 +1,5 @@
-import WhatsAppButton from "@/components/Common/WhatsAppButton";
-import ProgressScroll from "@/components/Common/ProgressScroll";
+import React from "react";
+import { ProgressScroll, WhatsAppButton } from "@/components/layout";
 
 export default function Layout({ children }) {
   return (

@@ -9,7 +9,7 @@ import {
   mailSvg,
   timeSvg,
   whatsAppSvg2,
-} from "@/data/Main/icons";
+} from "@/data/icons";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import EMAIL_API from "../../config/emailApi";

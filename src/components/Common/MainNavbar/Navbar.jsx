@@ -1,168 +1,163 @@
-/* eslint-disable @next/next/no-img-element */
-import React, { useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import Link from "next/link";
+import Image from "next/image";
 import { useRouter } from "next/router";
-import TopNavbar from "./TopNavbar";
+import TopNavbar from "../TopNavbar";
+import styles from "./MainNavbar.module.css";
 
 function MainNavbar({ mainBg, subBg, noStatic, curve }) {
   const router = useRouter();
+  const [isScrolled, setIsScrolled] = useState(false);
+  const [isOpen, setIsOpen] = useState(false);
+  const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+
   useEffect(() => {
     const handleScroll = () => {
-      const navbar = document.querySelector(".navbar");
-      if (!navbar) return;
-
       if (window.scrollY > 200) {
-        navbar.classList.add("nav-scroll");
+        setIsScrolled(true);
       } else {
-        navbar.classList.remove("nav-scroll");
+        setIsScrolled(false);
       }
     };
-
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  const toggleNavbar = () => {
-    const navbarCollapse = document.querySelector(".navbar .navbar-collapse");
-    if (navbarCollapse) {
-      navbarCollapse.classList.toggle("show");
-    }
-  };
-
-  const handleDropdownMouseEnter = (event) => {
-    const dropdown = event.currentTarget.querySelector(".dropdown-menu");
-    if (dropdown) {
-      dropdown.classList.add("show");
-    }
-  };
-
-  const handleDropdownMouseLeave = (event) => {
-    const dropdown = event.currentTarget.querySelector(".dropdown-menu");
-    if (dropdown) {
-      dropdown.classList.remove("show");
-    }
-  };
+  const toggleNavbar = () => setIsOpen(!isOpen);
 
   return (
     <>
       <TopNavbar />
       <nav
-        className={`navbar navbar-expand-lg ${curve ? "nav-crev" : ""} ${
-          noStatic ? "" : "static"
-        } ${mainBg ? "main-bg" : ""} ${subBg ? "sub-bg" : ""}`}
+        className={`${styles.navbar} ${isScrolled ? styles.navScroll : ""} ${
+          curve ? styles.navCrev : ""
+        } ${noStatic ? "" : styles.static} ${mainBg ? styles.mainBg : ""} ${
+          subBg ? styles.subBg : ""
+        }`}
         role="navigation"
         aria-label="Navegación principal"
       >
-        <div className="container">
+        <div className={styles.container}>
           <Link
-            className="logo"
+            className={styles.logo}
             href="/home"
             aria-label="Elephant Group - Ir a inicio"
           >
-            <img
+            <Image
               src="/assets/light/imgs/logo-eg-new.webp"
               alt="Elephant Group - Imprenta y servicios gráficos en Valparaíso"
-              width="140"
-              height="auto"
-              className="icon-img-140"
+              width={140}
+              height={45}
+              priority
+              className={styles.logoImg}
             />
           </Link>
 
           <button
-            className="navbar-toggler"
+            className={`${styles.navbarToggler} ${isOpen ? styles.active : ""}`}
             type="button"
-            aria-controls="navbarSupportedContent"
-            aria-expanded="false"
+            aria-controls="navbarContent"
+            aria-expanded={isOpen}
             aria-label="Abrir menú de navegación"
             onClick={toggleNavbar}
           >
-            <span className="icon-bar">
-              <i className="fas fa-bars"></i>
-            </span>
+            <span className={styles.iconBar}></span>
+            <span className={styles.iconBar}></span>
+            <span className={styles.iconBar}></span>
           </button>
 
           <div
-            className="collapse navbar-collapse justify-content-end pe-4 pt-30"
-            id="navbarSupportedContent"
+            className={`${styles.navbarCollapse} ${isOpen ? styles.show : ""}`}
+            id="navbarContent"
           >
-            <ul className="navbar-nav" role="menubar">
-              <li className="nav-item" role="none">
+            <ul className={styles.navbarNav} role="menubar">
+              <li className={styles.navItem} role="none">
                 <Link
-                  className={`nav-link main-navbar-link-override${
-                    router.pathname === "/home" ? " is-active" : ""
+                  className={`${styles.navLink} ${
+                    router.pathname === "/home" ? styles.isActive : ""
                   }`}
                   href="/home"
                   role="menuitem"
                   aria-label="Ir a página de inicio"
-                  {...(router.pathname === "/home" && {
-                    "aria-current": "page",
-                  })}
+                  aria-current={
+                    router.pathname === "/home" ? "page" : undefined
+                  }
                 >
-                  <span className="rolling-text">INICIO</span>
+                  <span className={styles.rollingText}>INICIO</span>
                 </Link>
               </li>
+
               <li
-                className="nav-item dropdown"
-                onMouseEnter={handleDropdownMouseEnter}
-                onMouseLeave={handleDropdownMouseLeave}
+                className={`${styles.navItem} ${styles.dropdown}`}
+                onMouseEnter={() => setIsDropdownOpen(true)}
+                onMouseLeave={() => setIsDropdownOpen(false)}
                 role="none"
               >
                 <Link
-                  className="nav-link dropdown-toggle main-navbar-link-override"
+                  className={styles.navLink}
                   href="#"
-                  id="navbarDropdown"
                   role="button"
-                  data-bs-toggle="dropdown"
                   aria-haspopup="true"
-                  aria-expanded="false"
+                  aria-expanded={isDropdownOpen}
                 >
-                  <span className="rolling-text">PRODUCTOS</span>
+                  <span className={styles.rollingText}>PRODUCTOS</span>
                 </Link>
-                <ul className="dropdown-menu" role="menu">
+                <ul
+                  className={`${styles.dropdownMenu} ${
+                    isDropdownOpen ? styles.showDropdown : ""
+                  }`}
+                  role="menu"
+                >
                   <li role="none">
                     <Link
-                      className={`dropdown-item${
+                      className={`${styles.dropdownItem} ${
                         router.pathname === "/services/letreros"
-                          ? " is-active"
+                          ? styles.isActive
                           : ""
                       }`}
                       href="/services/letreros"
                       role="menuitem"
-                      {...(router.pathname === "/services/letreros" && {
-                        "aria-current": "page",
-                      })}
+                      aria-current={
+                        router.pathname === "/services/letreros"
+                          ? "page"
+                          : undefined
+                      }
                     >
                       Letreros
                     </Link>
                   </li>
                   <li role="none">
                     <Link
-                      className={`dropdown-item${
+                      className={`${styles.dropdownItem} ${
                         router.pathname === "/services/senaleticas"
-                          ? " is-active"
+                          ? styles.isActive
                           : ""
                       }`}
                       href="/services/senaleticas"
                       role="menuitem"
-                      {...(router.pathname === "/services/senaleticas" && {
-                        "aria-current": "page",
-                      })}
+                      aria-current={
+                        router.pathname === "/services/senaleticas"
+                          ? "page"
+                          : undefined
+                      }
                     >
-                      Señaleticas
+                      Señaléticas
                     </Link>
                   </li>
                   <li role="none">
                     <Link
-                      className={`dropdown-item${
+                      className={`${styles.dropdownItem} ${
                         router.pathname === "/services/adhesivos"
-                          ? " is-active"
+                          ? styles.isActive
                           : ""
                       }`}
                       href="/services/adhesivos"
                       role="menuitem"
-                      {...(router.pathname === "/services/adhesivos" && {
-                        "aria-current": "page",
-                      })}
+                      aria-current={
+                        router.pathname === "/services/adhesivos"
+                          ? "page"
+                          : undefined
+                      }
                     >
                       Adhesivos
                     </Link>
@@ -170,34 +165,34 @@ function MainNavbar({ mainBg, subBg, noStatic, curve }) {
                 </ul>
               </li>
 
-              <li className="nav-item" role="none">
+              <li className={styles.navItem} role="none">
                 <Link
-                  className={`nav-link main-navbar-link-override${
-                    router.pathname === "/quote" ? " is-active" : ""
+                  className={`${styles.navLink} ${
+                    router.pathname === "/quote" ? styles.isActive : ""
                   }`}
                   href="/quote"
                   role="menuitem"
                   aria-label="Solicitar cotización de servicios"
-                  {...(router.pathname === "/quote" && {
-                    "aria-current": "page",
-                  })}
+                  aria-current={
+                    router.pathname === "/quote" ? "page" : undefined
+                  }
                 >
-                  <span className="rolling-text">COTIZACIÓN</span>
+                  <span className={styles.rollingText}>COTIZACIÓN</span>
                 </Link>
               </li>
-              <li className="nav-item" role="none">
+              <li className={styles.navItem} role="none">
                 <Link
-                  className={`nav-link main-navbar-link-override${
-                    router.pathname === "/contact" ? " is-active" : ""
+                  className={`${styles.navLink} ${
+                    router.pathname === "/contact" ? styles.isActive : ""
                   }`}
                   href="/contact"
                   role="menuitem"
                   aria-label="Contactar con Elephant Group"
-                  {...(router.pathname === "/contact" && {
-                    "aria-current": "page",
-                  })}
+                  aria-current={
+                    router.pathname === "/contact" ? "page" : undefined
+                  }
                 >
-                  <span className="rolling-text">CONTACTO</span>
+                  <span className={styles.rollingText}>CONTACTO</span>
                 </Link>
               </li>
             </ul>

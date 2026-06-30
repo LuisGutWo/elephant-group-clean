@@ -1,13 +1,14 @@
 import React from "react";
 import Image from "next/image";
+import styles from "./FooterImg.module.css";
 
 const FooterImg = () => {
   return (
-    <div className="eg-footer-image-inner" id="footer-image">
+    <div className={styles.footerImageInner} id="footer-image">
       <Image
         src="/assets/light/imgs/header/Banner_Contacto.webp"
         alt="Letrero publicitario de Elephant Group en Valparaíso - Imagen decorativa del pie de página"
-        className="eg-footer-main-image"
+        className={styles.footerMainImage}
         width={600}
         height={120}
         priority
