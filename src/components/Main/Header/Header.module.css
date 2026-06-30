@@ -160,15 +160,16 @@
 
 .arrowLeftIcon {
   transform: rotate(-45deg);
-  translatex: 2px;
+  translate: 2px;
 }
 .arrowRightIcon {
   transform: rotate(135deg);
-  translatex: -2px;
+  translate: -2px;
 }
 
 /* Inyección de estilos de paginación de Swiper */
-:global(.slider-prlx .swiper-pagination-fraction) {
+/* Corrección: Vincula el selector global a la clase local .sliderPrlx */
+.sliderPrlx :global(.swiper-pagination-fraction) {
   color: rgba(255, 255, 255, 0.6);
   font-size: 0.85rem;
   font-family: var(--font-primary);
@@ -177,6 +178,12 @@
   left: 40px;
   width: auto;
   z-index: 10;
+}
+
+.sliderPrlx :global(.swiper-pagination-current) {
+  color: #c9961a;
+  font-weight: 700;
+  font-size: 1.1rem;
 }
 
 :global(.slider-prlx .swiper-pagination-current) {
