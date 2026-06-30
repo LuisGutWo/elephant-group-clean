@@ -3,7 +3,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation, Autoplay, Pagination, Parallax } from "swiper/modules";
-import StatementSplitter from "@/components/Main/Common/StatementSplitter";
+import StatementSplitter from "../Common/StatementSplitter";
 import data from "@/data/Main/header.json";
 import { arrowRightUpSvg } from "@/data/Main/icons";
 import styles from "./Header.module.css";

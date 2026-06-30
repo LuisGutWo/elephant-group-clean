@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import SeoHead from "@/components/layout/SeoHead";
 import Layout from "@/components/layout/Layout";
 import Navbar from "@/components/Common/MainNavbar";
-import Header from "@/components/Portfolio/HeaderPortfolio/HeaderPortfolio";
+import HeaderPortfolio from "@/components/Main/HeaderPortfolio";
 import GridPortfolioImages from "@/components/Portfolio/GridPortfolioImages/GridPortfolioImages";
 import FooterBottom from "@/components/layout/FooterBottom/FooterBottom";
 
@@ -111,7 +111,7 @@ function PortfolioPage() {
       />{" "}
       <Navbar mainBg />
       <main className="main-bg">
-        <Header data={headerMetadata} />
+        <HeaderPortfolio data={headerMetadata} />
         <GridPortfolioImages />
       </main>
       <FooterBottom subBg />
