@@ -1,9 +1,9 @@
 import React, { useEffect } from "react";
-import SeoHead from "@/components/Common/SeoHead";
+import SeoHead from "@/components/layout/SeoHead";
 import MainNavbar from "@/components/Common/MainNavbar";
 import PrivacyPolicyHeader from "@/components/Legal/PrivacyPolicyHeader";
 import PrivacyPolicyContent from "@/components/Legal/PrivacyPolicyContent";
-import FooterBottom from "@/components/Main/FooterBottom";
+import FooterBottom from "@/components/Main/FooterBottom/FooterBottom";
 
 function PrivacyPolicy() {
   useEffect(() => {

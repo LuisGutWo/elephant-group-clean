@@ -1,22 +1,44 @@
 import { useEffect } from "react";
-import { useRouter } from "next/router";
+import Layout from "@/components/layout/Layout";
+import SeoHead from "@/components/layout/SeoHead";
+import { schemaOrganization, schemaWebsite } from "@/lib/schema";
+import Loader from "@/components/Common/Loader";
+import Navbar from "@/components/Common/MainNavbar";
+import Header from "@/components/Main/Header";
+import AboutUs from "@/components/Main/AboutUs";
+import Portfolio from "@/components/Main/Portfolio";
+import Clients from "@/components/Main/Clients";
+import FooterImg from "@/components/Main/FooterImg";
+import Footer from "@/components/Main/Footer";
+import FooterBottom from "@/components/Main/FooterBottom";
 
-export default function Index() {
-  const router = useRouter();
-  if (!router) {
-    throw new Error("router is null");
-  }
-
+export default function HomePage() {
   useEffect(() => {
-    try {
-      if (router) {
-        router.replace("/home");
-      } else {
-        throw new Error("router is null");
-      }
-    } catch (error) {
-      console.error("Error redirecting to /home", error);
-    }
-  }, [router]);
-  return null;
+    document.body.classList.add("sub-bg");
+    return () => document.body.classList.remove("sub-bg");
+  }, []);
+
+  return (
+    <>
+      <SeoHead
+        canonical="/"
+        schemas={[schemaOrganization(), schemaWebsite()]}
+      />
+      <Loader />
+      <Navbar />
+      <main id="main-content">
+        <Header />
+        <section id="about" aria-labelledby="about-title">
+          <AboutUs />
+        </section>
+        <Portfolio />
+        <Clients />
+      </main>
+      <FooterImg />
+      <Footer />
+      <FooterBottom />
+    </>
+  );
 }
+
+HomePage.getLayout = (page) => <Layout>{page}</Layout>;

@@ -1,56 +1,37 @@
-/** @type {import('next').NextConfig} */
-import { join, dirname } from "path";
-import { fileURLToPath } from "url";
-
-const __dirname = dirname(fileURLToPath(import.meta.url));
-
 const isProduction = process.env.NODE_ENV === "production";
-const scriptSrcTokens = [
+
+const scriptSrc = [
   "'self'",
   "'unsafe-inline'",
   ...(!isProduction ? ["'unsafe-eval'"] : []),
   "https://www.google.com",
   "https://www.gstatic.com",
-  "https://unpkg.com",
-  "https://cdn.jsdelivr.net",
-];
+].join(" ");
 
-const cspDirectives = [
+const csp = [
   "default-src 'self'",
   "base-uri 'self'",
   "object-src 'none'",
   "frame-ancestors 'self'",
-  `script-src ${scriptSrcTokens.join(" ")}`,
+  `script-src ${scriptSrc}`,
   "script-src-attr 'none'",
-  "style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://cdn.jsdelivr.net",
-  "font-src 'self' data: https://fonts.gstatic.com https://cdn.jsdelivr.net",
+  "style-src 'self' 'unsafe-inline' https://fonts.googleapis.com",
+  "font-src 'self' data: https://fonts.gstatic.com",
   "img-src 'self' data: blob: https:",
-  "connect-src 'self' https://www.google.com https://www.gstatic.com https://maps.googleapis.com https://maps.gstatic.com",
+  "connect-src 'self' https://www.google.com https://www.gstatic.com",
   "frame-src 'self' https://www.google.com https://recaptcha.google.com",
   "form-action 'self' https://wa.me https://api.whatsapp.com",
   ...(isProduction ? ["upgrade-insecure-requests"] : []),
-];
+].join("; ");
 
 const securityHeaders = [
-  {
-    key: "Content-Security-Policy",
-    value: cspDirectives.join("; "),
-  },
-  {
-    key: "X-Frame-Options",
-    value: "SAMEORIGIN",
-  },
-  {
-    key: "Referrer-Policy",
-    value: "strict-origin-when-cross-origin",
-  },
+  { key: "Content-Security-Policy", value: csp },
+  { key: "X-Frame-Options", value: "SAMEORIGIN" },
+  { key: "X-Content-Type-Options", value: "nosniff" },
+  { key: "Referrer-Policy", value: "strict-origin-when-cross-origin" },
   {
     key: "Permissions-Policy",
-    value: "camera=(), microphone=(), geolocation=(), payment=(), usb=()",
-  },
-  {
-    key: "X-Content-Type-Options",
-    value: "nosniff",
+    value: "camera=(), microphone=(), geolocation=(), payment=()",
   },
   {
     key: "Strict-Transport-Security",
@@ -58,50 +39,24 @@ const securityHeaders = [
   },
 ];
 
+/** @type {import('next').NextConfig} */
 const nextConfig = {
+  reactStrictMode: true,
   trailingSlash: true,
   images: {
-    unoptimized: true,
-    qualities: [75, 90],
+    unoptimized: false,
+    formats: ["image/avif", "image/webp"],
+    deviceSizes: [640, 750, 828, 1080, 1200, 1920],
+    imageSizes: [16, 32, 48, 64, 96, 128, 256, 384],
   },
-  reactStrictMode: false,
-  sassOptions: {
-    includePaths: [join(__dirname, "css")],
-  },
-  eslint: {
-    ignoreDuringBuilds: false,
-  },
+  eslint: { ignoreDuringBuilds: false },
+  transpilePackages: ["framer-motion", "gsap", "react-scroll-parallax"],
   async headers() {
-    return [
-      {
-        source: "/(.*)",
-        headers: securityHeaders,
-      },
-    ];
+    return [{ source: "/(.*)", headers: securityHeaders }];
   },
-  transpilePackages: [
-    "framer-motion",
-    "gsap",
-    "react-scroll-parallax",
-    "@nextui-org/react",
-    "@nextui-org/button",
-    "@nextui-org/card",
-    "@nextui-org/modal",
-    "@nextui-org/navbar",
-    "@nextui-org/system",
-    "@nextui-org/theme",
-    "@nextui-org/accordion",
-    "@nextui-org/autocomplete",
-    "@nextui-org/calendar",
-    "@nextui-org/date-picker",
-    "@nextui-org/dropdown",
-    "@nextui-org/popover",
-    "@nextui-org/select",
-    "@nextui-org/snippet",
-    "@nextui-org/tabs",
-    "@nextui-org/tooltip",
-    "react-icons",
-  ],
+  async redirects() {
+    return [{ source: "/home", destination: "/", permanent: true }];
+  },
 };
 
 export default nextConfig;

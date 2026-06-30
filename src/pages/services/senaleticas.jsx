@@ -1,10 +1,10 @@
 import React, { useEffect } from "react";
 import Head from "next/head";
-import Layout from "@/layouts/default";
+import Layout from "@/components/layout/Layout";
 import Navbar from "@/components/Common/MainNavbar";
 import Header from "@/components/InnerPages/Header";
-import FooterBottom from "@/components/Main/FooterBottom";
-import Señaleticas from "@/components/InnerPages/Services/Señaleticas";
+import FooterBottom from "@/components/Main/FooterBottom/FooterBottom";
+import Señaleticas from "@/components/InnerPages/Services/Senaleticas";
 
 function SenaleticasPage() {
   useEffect(() => {

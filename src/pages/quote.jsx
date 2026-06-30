@@ -1,11 +1,11 @@
 import React, { useEffect } from "react";
-import SeoHead from "@/components/Common/SeoHead";
-import Layout from "@/layouts/default";
+import SeoHead from "@/components/layout/SeoHead";
+import Layout from "@/components/layout/Layout";
 import Navbar from "@/components/Common/MainNavbar";
 import Header from "@/components/InnerPages/Header";
 import Story from "@/components/InnerPages/About/Story";
-import FooterBottom from "@/components/Main/FooterBottom";
-import FooterImg from "@/components/Main/FooterImg";
+import FooterBottom from "@/components/Main/FooterBottom/FooterBottom";
+import FooterImg from "@/components/Main/FooterImg/FooterImg";
 import Footer from "@/components/Main/Footer";
 import HeaderContact from "@/components/InnerPages/Contact/Header";
 

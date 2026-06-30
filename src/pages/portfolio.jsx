@@ -1,10 +1,10 @@
 import React, { useEffect } from "react";
-import SeoHead from "@/components/Common/SeoHead";
-import Layout from "@/layouts/default";
+import SeoHead from "@/components/layout/SeoHead";
+import Layout from "@/components/layout/Layout";
 import Navbar from "@/components/Common/MainNavbar";
-import Header from "@/components/Portfolio/HeaderPortfolio";
-import GridPortfolioImages from "@/components/Portfolio/GridPortfolioImages";
-import FooterBottom from "@/components/Main/FooterBottom";
+import Header from "@/components/Portfolio/HeaderPortfolio/HeaderPortfolio";
+import GridPortfolioImages from "@/components/Portfolio/GridPortfolioImages/GridPortfolioImages";
+import FooterBottom from "@/components/Main/FooterBottom/FooterBottom";
 
 function PortfolioPage() {
   useEffect(() => {
