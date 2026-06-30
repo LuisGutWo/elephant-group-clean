@@ -4,7 +4,7 @@ import Layout from "@/components/layout/Layout";
 import Navbar from "@/components/Common/MainNavbar";
 import Header from "@/components/InnerPages/Header";
 import Letreros from "@/components/InnerPages/Services/Letreros";
-import FooterBottom from "@/components/Main/FooterBottom/FooterBottom";
+import FooterBottom from "@/components/layout/FooterBottom/FooterBottom";
 
 function LetrerosPage() {
   useEffect(() => {

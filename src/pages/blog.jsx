@@ -4,7 +4,7 @@ import Layout from "@/components/layout/Layout";
 import Navbar from "@/components/Common/MainNavbar";
 import BlogHeader from "@/components/Blog/BlogHeader";
 import BlogGrid from "@/components/Blog/BlogGrid";
-import FooterBottom from "@/components/Main/FooterBottom/FooterBottom";
+import FooterBottom from "@/components/layout/FooterBottom/FooterBottom";
 
 function BlogPage() {
   useEffect(() => {

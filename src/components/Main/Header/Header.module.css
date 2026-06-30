@@ -167,8 +167,7 @@
   translate: -2px;
 }
 
-/* Inyección de estilos de paginación de Swiper */
-/* Corrección: Vincula el selector global a la clase local .sliderPrlx */
+/* Inyección de estilos de paginación de Swiper correctamente anidados */
 .sliderPrlx :global(.swiper-pagination-fraction) {
   color: rgba(255, 255, 255, 0.6);
   font-size: 0.85rem;
@@ -178,6 +177,12 @@
   left: 40px;
   width: auto;
   z-index: 10;
+}
+
+.sliderPrlx :global(.swiper-pagination-current) {
+  color: #c9961a;
+  font-weight: 700;
+  font-size: 1.1rem;
 }
 
 .sliderPrlx :global(.swiper-pagination-current) {

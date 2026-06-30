@@ -3,9 +3,9 @@ import SeoHead from "@/components/layout/SeoHead";
 import Layout from "@/components/layout/Layout";
 import Navbar from "@/components/Common/MainNavbar";
 import Header from "@/components/InnerPages/Contact/ContactHeader";
-import FooterBottom from "@/components/Main/FooterBottom/FooterBottom";
-import FooterImg from "@/components/Main/FooterImg/FooterImg";
-import Footer from "@/components/Main/Footer";
+import FooterBottom from "@/components/layout/FooterBottom/FooterBottom";
+import FooterImg from "@/components/layout/FooterImg/FooterImg";
+import Footer from "@/components/layout/Footer";
 
 function ContactPage() {
   useEffect(() => {

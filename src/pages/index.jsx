@@ -8,9 +8,7 @@ import Header from "@/components/Main/Header";
 import AboutUs from "@/components/Main/AboutUs";
 import Portfolio from "@/components/Main/Portfolio";
 import Clients from "@/components/Main/Clients";
-import FooterImg from "@/components/Main/FooterImg";
-import Footer from "@/components/Main/Footer";
-import FooterBottom from "@/components/Main/FooterBottom";
+import { Footer, FooterBottom, FooterImg } from "@/components/layout";
 
 export default function HomePage() {
   useEffect(() => {

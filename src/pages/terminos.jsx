@@ -3,7 +3,7 @@ import SeoHead from "@/components/layout/SeoHead";
 import MainNavbar from "@/components/Common/MainNavbar";
 import TermsHeader from "@/components/Legal/TermsHeader";
 import TermsContent from "@/components/Legal/TermsContent";
-import FooterBottom from "@/components/Main/FooterBottom/FooterBottom";
+import FooterBottom from "@/components/layout/FooterBottom/FooterBottom";
 
 function TermsAndConditions() {
   useEffect(() => {

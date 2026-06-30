@@ -3,7 +3,7 @@ import SeoHead from "@/components/layout/SeoHead";
 import MainNavbar from "@/components/Common/MainNavbar";
 import PrivacyPolicyHeader from "@/components/Legal/PrivacyPolicyHeader";
 import PrivacyPolicyContent from "@/components/Legal/PrivacyPolicyContent";
-import FooterBottom from "@/components/Main/FooterBottom/FooterBottom";
+import FooterBottom from "@/components/layout/FooterBottom/FooterBottom";
 
 function PrivacyPolicy() {
   useEffect(() => {

@@ -3,7 +3,7 @@ import Head from "next/head";
 import Layout from "@/components/layout/Layout";
 import Navbar from "@/components/Common/MainNavbar";
 import Header from "@/components/InnerPages/Header";
-import FooterBottom from "@/components/Main/FooterBottom/FooterBottom";
+import FooterBottom from "@/components/layout/FooterBottom/FooterBottom";
 import Adhesivos from "@/components/InnerPages/Services/Adhesivos";
 
 function AdhesivosPage() {

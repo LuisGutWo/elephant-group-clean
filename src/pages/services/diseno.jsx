@@ -5,7 +5,7 @@ import Navbar from "@/components/Common/MainNavbar";
 import Header from "@/components/InnerPages/Header";
 
 import Form from "@/components/InnerPages/Contact/Form";
-import FooterBottom from "@/components/Main/FooterBottom/FooterBottom";
+import FooterBottom from "@/components/layout/FooterBottom/FooterBottom";
 
 function DisenoGraficoPage() {
   useEffect(() => {
