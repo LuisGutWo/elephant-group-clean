@@ -209,7 +209,7 @@ No subas `.env.local` a Git. Usa `.env.local.example` como plantilla.
 
 ## 📄 Licencia
 
-Proyecto privado y confidencial.
+Proyecto privado desarrollado por LagMedia, Santiago de Chile.
 
 ## 👥 Equipo
 
