@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import dynamic from "next/dynamic";
 import ContactInfoFields from "./ContactInfoFields";
 import FileUploadField from "./FileUploadField";
-import EMAIL_API from "@/config/emailApi";
+import { EMAIL_API } from "@/config/emailApi";
 import { getRecaptchaSiteKey } from "@/config/recaptcha";
 import styles from "./ContactForm.module.css";
 

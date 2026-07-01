@@ -1,10 +1,4 @@
-export { default as MainNavbar } from "./MainNavbar";
-export { default as TopNavbar } from "./TopNavbar";
-export { default as ProgressScroll } from "./ProgressScroll";
-export { default as RouteProgress } from "./RouteProgress";
-export { default as WhatsAppButton } from "./WhatsAppButton";
 export { default as Footer } from "./Footer";
 export { default as FooterBottom } from "./FooterBottom";
 export { default as FooterImg } from "./FooterImg";
-export { default as Loader } from "./Loader";
 export { default as Layout } from "./Layout";

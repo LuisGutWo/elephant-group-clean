@@ -4,7 +4,7 @@ import gsap from "gsap";
 import styles from "./Loader.module.css";
 
 function Loader() {
-  const [logoSrc, setLogoSrc] = useState("/assets/light/imgs/logo-eg-new.webp");
+  const [logoSrc, setLogoSrc] = useState("/images/logo/logo-eg-new.webp");
 
   // Referencias mutables para evitar consultas nativas al DOM
   const loaderWrapRef = useRef(null);

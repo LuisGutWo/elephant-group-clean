@@ -1,46 +1,41 @@
-import React, { useEffect } from "react";
-import SeoHead from "@/components/layout/SeoHead";
+import { useEffect } from "react";
 import Layout from "@/components/layout/Layout";
-import Navbar from "@/components/Common/MainNavbar";
-import Header from "@/components/InnerPages/Contact/ContactHeader";
-import FooterBottom from "@/components/layout/FooterBottom/FooterBottom";
-import FooterImg from "@/components/layout/FooterImg/FooterImg";
-import Footer from "@/components/layout/Footer";
+import SeoHead from "@/components/layout/SeoHead";
+import { schemaBreadcrumb } from "@/lib/schema";
+import MainNavbar from "@/components/Common/MainNavbar";
+import { Footer, FooterBottom, FooterImg } from "@/components/layout";
+import ContactHeader from "@/components/InnerPages/Contact/ContactHeader";
+import Form from "@/components/InnerPages/Contact";
 
-function ContactPage() {
+export default function ContactPage() {
   useEffect(() => {
-    const body = document?.body;
-    if (body !== null && body !== undefined) {
-      body.classList.add("main-bg");
-    }
-    return () => {
-      const body = document?.body;
-      if (body !== null && body !== undefined) {
-        body.classList.remove("main-bg");
-      }
-    };
+    document.body.classList.add("main-bg");
+    return () => document.body.classList.remove("main-bg");
   }, []);
 
   return (
     <>
       <SeoHead
-        title="Contacto | Elephant Group"
-        description="Contáctanos para soluciones de diseño gráfico, impresión digital y señalética en Valparaíso y Viña del Mar. Atención personalizada para empresas."
-        keywords="contacto, agencia creativa, diseño gráfico, impresión digital, señalética, Valparaíso, Viña del Mar, Elephant Group"
-        author="Elephant Group"
-        canonical="https://landingclientes.elephantgroup.cl/contacto"
-      />{" "}
-      <Navbar mainBg />
-      <main>
-        <Header />
-        <FooterImg />
-        <Footer />
+        title="Contacto y Cotización"
+        description="Contáctanos para soluciones de diseño gráfico, impresión digital y señalética en Valparaíso y Viña del Mar. Respuesta en menos de 24 horas."
+        canonical="/contact/"
+        schemas={[
+          schemaBreadcrumb([
+            { name: "Inicio", url: "/" },
+            { name: "Contacto", url: "/contact/" },
+          ]),
+        ]}
+      />
+      <MainNavbar mainBg />
+      <main id="main-content">
+        <ContactHeader />
+        <Form />
       </main>
+      <FooterImg />
+      <Footer />
       <FooterBottom />
     </>
   );
 }
 
 ContactPage.getLayout = (page) => <Layout>{page}</Layout>;
-
-export default ContactPage;

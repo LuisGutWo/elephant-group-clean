@@ -21,7 +21,7 @@ function AboutUs() {
           <article className={styles.aboutItem}>
             <div className={styles.aboutIcon}>
               <Image
-                src="/assets/light/imgs/serv-icons/pencil-icon.svg"
+                src="/images/serv-icons/pencil-icon.svg"
                 alt="Icono de materiales profesionales y duraderos"
                 width={120}
                 height={120}
@@ -36,7 +36,7 @@ function AboutUs() {
           <article className={styles.aboutItem}>
             <div className={styles.aboutIcon}>
               <Image
-                src="/assets/light/imgs/serv-icons/tool-icon.svg"
+                src="/images/serv-icons/tool-icon.svg"
                 alt="Icono de fabricación propia sin intermediarios"
                 width={120}
                 height={120}
@@ -51,7 +51,7 @@ function AboutUs() {
           <article className={styles.aboutItem}>
             <div className={styles.aboutIcon}>
               <Image
-                src="/assets/light/imgs/serv-icons/clock-icon.svg"
+                src="/images/serv-icons/clock-icon.svg"
                 alt="Icono de producción ágil según necesidad"
                 width={120}
                 height={120}

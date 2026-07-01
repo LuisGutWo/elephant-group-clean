@@ -3,7 +3,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { useRouter } from "next/router";
 import TopNavbar from "../TopNavbar";
-import styles from "./MainNavbar.module.css";
+import styles from "./Navbar.module.css";
 
 function MainNavbar({ mainBg, subBg, noStatic, curve }) {
   const router = useRouter();
@@ -44,7 +44,7 @@ function MainNavbar({ mainBg, subBg, noStatic, curve }) {
             aria-label="Elephant Group - Ir a inicio"
           >
             <Image
-              src="/assets/light/imgs/logo-eg-new.webp"
+              src="/images/logo/logo-eg-new.webp"
               alt="Elephant Group - Imprenta y servicios gráficos en Valparaíso"
               width={140}
               height={45}

@@ -1,9 +1,7 @@
 /**
  * Configuración de APIs de Email
- * Detecta automáticamente el entorno (Netlify, cPanel o Desarrollo local)
+ * Detecta automáticamente el entorno (Vercel, Netlify, cPanel o Desarrollo local)
  */
-
-// Detectar entorno
 
 const isVercel =
   typeof window !== "undefined" &&
@@ -26,6 +24,13 @@ const usePhpApi = forcePhpApi || (!useNextApi && !useMockServer);
 
 export const EMAIL_API = {
   sendContact: useMockServer
+    ? "http://localhost:3001/send-contact"
+    : useNextApi
+    ? "/api/send-contact"
+    : usePhpApi
+    ? "/api/send-contact.php"
+    : "/api/send-contact",
+  sendFullContact: useMockServer
     ? "http://localhost:3001/send-contact"
     : useNextApi
     ? "/api/send-contact"
@@ -61,7 +66,6 @@ export const ENV_INFO = {
     : "PHP Scripts",
 };
 
-// Log de configuración (solo en desarrollo)
 if (process.env.NODE_ENV === "development" && typeof window !== "undefined") {
   console.log("🌍 Entorno detectado:", ENV_INFO.platform);
   console.log("📧 API de contacto:", EMAIL_API.sendContact);
@@ -69,5 +73,3 @@ if (process.env.NODE_ENV === "development" && typeof window !== "undefined") {
   console.log("🧪 Mock email server activo:", useMockServer);
   console.log("🧭 backend mode:", backendMode || "auto");
 }
-
-export default EMAIL_API;

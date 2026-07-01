@@ -1,16 +1,13 @@
-import React, { useEffect } from "react";
+import { useEffect } from "react";
 import SeoHead from "@/components/layout/SeoHead";
 import { schemaOrganization, schemaWebsite } from "@/lib/schema";
+import Loader from "@/components/Common/Loader";
+import MainNavbar from "@/components/Common/MainNavbar";
 import Header from "@/components/Main/Header";
 import AboutUs from "@/components/Main/AboutUs";
 import Portfolio from "@/components/Main/Portfolio";
 import Clients from "@/components/Main/Clients";
-import {
-  MainNavbar,
-  Footer,
-  FooterBottom,
-  FooterImg,
-} from "@/components/layout";
+import { Footer, FooterBottom, FooterImg } from "@/components/layout";
 
 export default function HomePage() {
   useEffect(() => {
@@ -24,10 +21,8 @@ export default function HomePage() {
         canonical="/"
         schemas={[schemaOrganization(), schemaWebsite()]}
       />
-
-      {/* Importación corregida apuntando a la nueva barra de navegación del Layout */}
+      <Loader />
       <MainNavbar />
-
       <main id="main-content">
         <Header />
         <section id="about" aria-labelledby="about-title">
@@ -36,7 +31,6 @@ export default function HomePage() {
         <Portfolio />
         <Clients />
       </main>
-
       <FooterImg />
       <Footer />
       <FooterBottom />

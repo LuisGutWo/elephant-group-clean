@@ -1,100 +1,80 @@
-.contactHeaderSection {
+.header {
   position: relative;
-  width: 100%;
-  min-height: 40vh;
-  display: flex;
-  align-items: center;
+  padding-block: var(--space-20) var(--space-16);
   overflow: hidden;
-  background-color: #1a1a1a;
-  font-family: var(--font-primary);
 }
 
-.bgImage {
+.backgroundImg {
   position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-image: url("/assets/light/imgs/works/work_publicity.webp");
+  inset: 0;
   background-size: cover;
   background-position: center;
-  background-repeat: no-repeat;
-  z-index: 1;
+  z-index: var(--z-base);
 }
 
-.bgImage::after {
+.backgroundImg::after {
   content: "";
   position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
+  inset: 0;
   background: linear-gradient(
-    180deg,
-    rgba(0, 0, 0, 0.5) 0%,
-    rgba(26, 26, 26, 0.95) 100%
+    to bottom,
+    rgba(26, 26, 46, 0.85),
+    rgba(26, 26, 46, 0.65)
   );
-  z-index: 2;
 }
 
 .container {
-  width: 100%;
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 0 var(--space-md);
-  margin-top: 60px; /* Despeja el navbar superior fijo */
   position: relative;
-  z-index: 3;
+  z-index: var(--z-above);
+  max-width: var(--container-max);
+  margin-inline: auto;
+  padding-inline: var(--container-pad);
 }
 
-.caption {
-  max-width: 700px;
+.row {
   display: flex;
-  flex-direction: column;
-  gap: var(--space-xs);
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-8);
+}
+
+.captionCol {
+  flex: 1 1 420px;
+}
+
+.descriptionCol {
+  flex: 1 1 320px;
 }
 
 .eyebrow {
-  color: #c9961a;
-  font-size: 0.85rem;
-  font-weight: 600;
+  font-size: var(--text-sm);
+  font-weight: var(--fw-semi);
+  letter-spacing: 0.1em;
   text-transform: uppercase;
-  letter-spacing: 2px;
-  margin: 0;
+  color: var(--color-accent);
+  margin-bottom: var(--space-3);
 }
 
 .title {
-  color: #ffffff;
-  font-size: 2.6rem;
-  font-weight: 800;
-  line-height: 1.2;
-  letter-spacing: -0.5px;
-  margin: 0;
-  text-transform: uppercase;
+  font-size: clamp(var(--text-3xl), 5vw, var(--text-5xl));
+  color: var(--color-text-inverse);
+  line-height: var(--leading-tight);
 }
 
 .description {
-  color: #cccccc;
-  font-size: 1rem;
-  line-height: 1.6;
-  margin: var(--space-sm) 0 0 0;
+  font-size: var(--text-base);
+  line-height: var(--leading-loose);
+  color: var(--color-text-dark-muted);
 }
 
-/* Responsivo para Móviles y Tabletas */
+.description strong {
+  color: var(--color-text-inverse);
+}
+
 @media (max-width: 768px) {
-  .contactHeaderSection {
-    min-height: 30vh;
-  }
-
-  .container {
-    margin-top: 40px;
-  }
-
-  .title {
-    font-size: 1.8rem;
-  }
-
-  .description {
-    font-size: 0.9rem;
+  .row {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: var(--space-6);
   }
 }
