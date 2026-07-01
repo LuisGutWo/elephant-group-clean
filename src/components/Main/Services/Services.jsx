@@ -1,14 +1,18 @@
-import React from "react";
 import Image from "next/image";
 import Link from "next/link";
 import data from "@/data/Main/services.json";
 import styles from "./Services.module.css";
 
+const serviceRouteById = {
+  1: "/services/adhesivos",
+  2: "/services/letreros",
+  3: "/services/diseno",
+};
+
 function Services() {
   return (
     <section className={styles.servicesSection}>
       <div className={styles.container}>
-        {/* Header de sección unificado */}
         <div className={styles.header}>
           <span className={styles.eyebrow}>Servicios Destacados</span>
           <h2 className={styles.title}>Soluciones Publicitarias Integrales</h2>
@@ -19,14 +23,16 @@ function Services() {
           </p>
         </div>
 
-        {/* Grid de servicios nativo */}
         <div className={styles.servicesGrid}>
           {data.map((item) => (
             <div className={styles.gridItem} key={item.id}>
-              <Link href="/services" className={styles.serviceLink}>
+              <Link
+                href={serviceRouteById[item.id] || "/quote"}
+                className={styles.serviceLink}
+              >
                 <div className={styles.iconWrap}>
                   <Image
-                    src={`/assets/light${item.image}`}
+                    src={item.image}
                     alt={`Icono de ${item.title} - Elephant Group`}
                     className={styles.iconImage}
                     width={100}
@@ -50,7 +56,9 @@ function Services() {
                     </svg>
                   </span>
                 </h4>
-                <p className={styles.itemText}>{item.text}</p>
+                <p className={styles.itemText}>
+                  {Array.isArray(item.text) ? item.text.join(" ") : item.text}
+                </p>
               </Link>
             </div>
           ))}

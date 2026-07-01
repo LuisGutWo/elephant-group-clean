@@ -2,14 +2,20 @@ import React, { useState, useEffect } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { Swiper, SwiperSlide } from "swiper/react";
-import { Navigation, Autoplay, Pagination, Parallax } from "swiper/modules";
+import {
+  Navigation,
+  Autoplay,
+  Pagination,
+  Parallax,
+  EffectFade,
+} from "swiper/modules";
 import StatementSplitter from "@/components/Common/StatementSplitter";
 import data from "@/data/Main/header.json";
 import { arrowRightUpSvg } from "@/data/Main/icons";
 import styles from "./Header.module.css";
 
 const swiperOptions = {
-  modules: [Navigation, Autoplay, Pagination, Parallax],
+  modules: [Navigation, Autoplay, Pagination, Parallax, EffectFade],
   autoplay: {
     delay: 5000,
     disableOnInteraction: false,
@@ -17,6 +23,7 @@ const swiperOptions = {
     waitForTransition: true,
   },
   effect: "fade",
+  fadeEffect: { crossFade: true },
   speed: 1500,
   parallax: true,
   loop: true,

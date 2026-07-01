@@ -78,7 +78,7 @@ function Clients() {
           </h2>
           <p className={styles.description}>
             Más de{" "}
-            <strong>100 empresas en Viña del Mar, Valparaíso y V Region</strong>{" "}
+            <strong>100 empresas en Viña del Mar, Valparaíso y V Región</strong>{" "}
             han confiado en nuestros <strong>implementos publicitarios</strong>{" "}
             para potenciar su marca.
           </p>
@@ -126,7 +126,7 @@ function Clients() {
                       src={item}
                       alt={`Logo cliente ${
                         index + 1
-                      } - Empresa que confía en Elephant Group para implementos publicitarios en Valparaíso, Viña del Mar y la V Region`}
+                      } - Empresa que confía en Elephant Group para implementos publicitarios en Valparaíso, Viña del Mar y la V Región`}
                       width={160}
                       height={100}
                       className={styles.logo}

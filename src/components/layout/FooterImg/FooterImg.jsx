@@ -6,11 +6,11 @@ const FooterImg = () => {
   return (
     <div className={styles.footerImageInner} id="footer-image">
       <Image
-        src="/assets/light/imgs/header/Banner_Contacto.webp"
+        src="/images/header/Banner_Contacto.webp"
         alt="Letrero publicitario de Elephant Group en Valparaíso - Imagen decorativa del pie de página"
         className={styles.footerMainImage}
-        width={600}
-        height={120}
+        fill
+        sizes="100vw"
         priority
       />
     </div>

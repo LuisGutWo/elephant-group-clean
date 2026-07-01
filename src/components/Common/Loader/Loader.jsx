@@ -115,7 +115,7 @@ function Loader() {
       console.warn(
         "Error loading logo asset, falling back to default light logo.",
       );
-      setLogoSrc("/assets/light/imgs/logo-eg-new.webp");
+      setLogoSrc("/images/logo/logo-eg-new.webp");
     };
 
     return () => {

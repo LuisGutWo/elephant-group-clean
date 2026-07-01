@@ -10,10 +10,11 @@ function MainNavbar({ mainBg, subBg, noStatic, curve }) {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+  const isHomeRoute = router.pathname === "/" || router.pathname === "/home";
 
   useEffect(() => {
     const handleScroll = () => {
-      if (window.scrollY > 200) {
+      if (window.scrollY > 28) {
         setIsScrolled(true);
       } else {
         setIsScrolled(false);
@@ -27,11 +28,11 @@ function MainNavbar({ mainBg, subBg, noStatic, curve }) {
 
   return (
     <>
-      <TopNavbar />
+      <TopNavbar hidden={isScrolled} />
       <nav
         className={`${styles.navbar} ${isScrolled ? styles.navScroll : ""} ${
           curve ? styles.navCrev : ""
-        } ${noStatic ? "" : styles.static} ${mainBg ? styles.mainBg : ""} ${
+        } ${noStatic ? styles.static : ""} ${mainBg ? styles.mainBg : ""} ${
           subBg ? styles.subBg : ""
         }`}
         role="navigation"
@@ -40,7 +41,7 @@ function MainNavbar({ mainBg, subBg, noStatic, curve }) {
         <div className={styles.container}>
           <Link
             className={styles.logo}
-            href="/home"
+            href="/"
             aria-label="Elephant Group - Ir a inicio"
           >
             <Image
@@ -74,14 +75,12 @@ function MainNavbar({ mainBg, subBg, noStatic, curve }) {
               <li className={styles.navItem} role="none">
                 <Link
                   className={`${styles.navLink} ${
-                    router.pathname === "/home" ? styles.isActive : ""
+                    isHomeRoute ? styles.isActive : ""
                   }`}
-                  href="/home"
+                  href="/"
                   role="menuitem"
                   aria-label="Ir a página de inicio"
-                  aria-current={
-                    router.pathname === "/home" ? "page" : undefined
-                  }
+                  aria-current={isHomeRoute ? "page" : undefined}
                 >
                   <span className={styles.rollingText}>INICIO</span>
                 </Link>
@@ -93,16 +92,19 @@ function MainNavbar({ mainBg, subBg, noStatic, curve }) {
                 onMouseLeave={() => setIsDropdownOpen(false)}
                 role="none"
               >
-                <Link
-                  className={styles.navLink}
-                  href="#"
+                <button
+                  className={`${styles.navLink} ${styles.navTrigger}`}
+                  type="button"
                   role="button"
                   aria-haspopup="true"
                   aria-expanded={isDropdownOpen}
+                  aria-controls="navbar-products-menu"
+                  onClick={() => setIsDropdownOpen((prev) => !prev)}
                 >
                   <span className={styles.rollingText}>PRODUCTOS</span>
-                </Link>
+                </button>
                 <ul
+                  id="navbar-products-menu"
                   className={`${styles.dropdownMenu} ${
                     isDropdownOpen ? styles.showDropdown : ""
                   }`}

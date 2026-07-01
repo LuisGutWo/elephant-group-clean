@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import Image from "next/image";
-import articlesData from "@/data/blog-articles.json";
+import articlesData from "@/data/Main/blog-articles.json";
 import styles from "./BlogGrid.module.css";
 
 function BlogGrid() {
@@ -12,19 +12,16 @@ function BlogGrid() {
   // Mapeo corregido a las rutas modernas de activos visuales
   const getCategoryImage = (category) => {
     const imageMap = {
-      "Diseño Gráfico": "/assets/light/imgs/works/diseno_servicestab.webp",
-      Señalética: "/assets/light/imgs/works/letrero_restaurante.webp",
-      Marketing: "/assets/light/imgs/works/publicidad_tela_pvc_1.webp",
-      Impresión: "/assets/light/imgs/works/impresion_image_covisa.webp",
-      Branding: "/assets/light/imgs/works/cafeteria_violeta.webp",
-      Publicidad: "/assets/light/imgs/works/letreros_varios.webp",
-      Packaging: "/assets/light/imgs/works/corte_casa_colibri.webp",
-      Merchandising: "/assets/light/imgs/works/grafica_adehesiva_cooler.webp",
+      "Diseño Gráfico": "/images/works/diseno_servicestab.webp",
+      Señalética: "/images/works/letrero_restaurante.webp",
+      Marketing: "/images/works/publicidad_tela_pvc_1.webp",
+      Impresión: "/images/works/impresion_image_covisa.webp",
+      Branding: "/images/works/cafeteria_violeta.webp",
+      Publicidad: "/images/works/letreros_varios.webp",
+      Packaging: "/images/works/corte_casa_colibri.webp",
+      Merchandising: "/images/works/grafica_adehesiva_cooler.webp",
     };
-    return (
-      imageMap[category] ||
-      "/assets/light/imgs/works/letreros_muestra_varios.webp"
-    );
+    return imageMap[category] || "/images/works/letreros_muestra_varios.webp";
   };
 
   const filteredArticles =

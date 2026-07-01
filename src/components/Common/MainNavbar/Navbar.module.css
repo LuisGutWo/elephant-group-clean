@@ -1,19 +1,24 @@
 .navbar {
+  --topbar-height: 2.5rem;
+  --mainnav-height: 4.25rem;
   position: fixed;
-  top: 40px; /* Espacio para el TopNavbar */
+  top: var(--topbar-height);
   left: 0;
   width: 100%;
   z-index: 999;
-  transition: all 0.4s ease;
-  background-color: transparent;
-  padding: var(--space-md) 0;
+  min-height: var(--mainnav-height);
+  transition: top 0.35s cubic-bezier(0.22, 1, 0.36, 1),
+    background-color 0.3s ease, box-shadow 0.3s ease, backdrop-filter 0.3s ease;
+  background-color: var(--bg-color);
+  padding: 0;
 }
 
 .navScroll {
   top: 0;
   background-color: var(--bg-color);
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
-  padding: var(--space-sm) 0;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+  backdrop-filter: saturate(1.1) blur(3px);
+  animation: navFadeIn 0.34s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
 .static {
@@ -25,7 +30,7 @@
 }
 
 .subBg {
-  background-color: #f8f9fa;
+  background-color: var(--bg-color);
 }
 
 .navCrev {
@@ -34,16 +39,19 @@
 
 .container {
   width: 100%;
-  max-width: 1200px;
+  max-width: 75rem;
   margin: 0 auto;
   padding: 0 var(--space-md);
-  display: flex;
+  min-height: var(--mainnav-height);
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
   align-items: center;
-  justify-content: space-between;
 }
 
 .logo {
   display: inline-block;
+  grid-column: 1;
+  justify-self: start;
 }
 
 .logoImg {
@@ -54,6 +62,7 @@
 /* Menú hamburguesa nativo */
 .navbarToggler {
   display: none;
+  grid-column: 3;
   background: none;
   border: none;
   cursor: pointer;
@@ -83,13 +92,17 @@
 
 .navbarCollapse {
   display: flex;
+  grid-column: 2;
   align-items: center;
+  justify-self: center;
 }
 
 .navbarNav {
   display: flex;
   list-style: none;
-  gap: var(--space-lg);
+  align-items: center;
+  justify-content: center;
+  gap: clamp(1.35rem, 2.6vw, 2.25rem);
   margin: 0;
   padding: 0;
 }
@@ -104,8 +117,14 @@
   display: block;
 }
 
+.navTrigger {
+  background: none;
+  border: 0;
+  cursor: pointer;
+}
+
 .isActive {
-  color: var(--primary-color) !important;
+  color: var(--color-accent) !important;
 }
 
 /* Dropdown Estructura */
@@ -145,18 +164,30 @@
 }
 
 .dropdownItem:hover {
-  background-color: var(--border-color);
-  color: var(--primary-color);
+  background-color: var(--color-border);
+  color: var(--color-accent);
 }
 
 /* Media Query Móvil */
 @media (max-width: 991px) {
+  .container {
+    grid-template-columns: auto auto;
+    justify-content: space-between;
+  }
+
+  .logo {
+    grid-column: 1;
+  }
+
   .navbarToggler {
     display: flex;
+    grid-column: 2;
+    justify-self: end;
   }
 
   .navbarCollapse {
     display: none;
+    grid-column: 1 / -1;
     position: absolute;
     top: 100%;
     left: 0;
@@ -164,6 +195,7 @@
     background-color: var(--bg-color);
     padding: var(--space-md);
     box-shadow: 0 10px 20px rgba(0, 0, 0, 0.05);
+    justify-self: stretch;
   }
 
   .navbarCollapse.show {
@@ -187,5 +219,16 @@
 
   .dropdown:hover .dropdownMenu {
     display: block;
+  }
+}
+
+@keyframes navFadeIn {
+  from {
+    opacity: 0.55;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
   }
 }

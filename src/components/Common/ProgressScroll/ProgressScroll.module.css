@@ -22,21 +22,19 @@
   transform: translateY(0);
 }
 
-.progressWrap::after {
+.arrowIcon {
   position: absolute;
-  content: "\f062"; /* Icono de flecha arriba si usas FontAwesome */
-  font-family: "Font Awesome 5 Free";
-  font-weight: 900;
-  text-align: center;
-  line-height: 46px;
-  font-size: 16px;
-  color: var(--primary-color);
-  left: 0;
-  top: 0;
-  height: 46px;
-  width: 46px;
+  inset: 0;
   z-index: 1;
-  transition: all 200ms linear;
+  display: grid;
+  place-items: center;
+  color: var(--color-primary);
+  pointer-events: none;
+}
+
+.arrowIcon svg {
+  width: 16px;
+  height: 16px;
 }
 
 .progressWrap svg path {

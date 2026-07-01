@@ -348,7 +348,7 @@ export default function Footer({ subBg }) {
                   }
                   className={styles.formInput}
                 />
-                <span id="footer-name-desc" className="sr-only">
+                <span id="footer-name-desc" className={styles.srOnly}>
                   Campo obligatorio. Ingrese su nombre completo.
                 </span>
 
@@ -369,7 +369,7 @@ export default function Footer({ subBg }) {
                   }
                   className={styles.formInput}
                 />
-                <span id="footer-email-desc" className="sr-only">
+                <span id="footer-email-desc" className={styles.srOnly}>
                   Campo obligatorio. Ingrese un correo electrónico válido.
                 </span>
 
@@ -390,7 +390,7 @@ export default function Footer({ subBg }) {
                   }
                   className={styles.formTextarea}
                 />
-                <span id="footer-message-desc" className="sr-only">
+                <span id="footer-message-desc" className={styles.srOnly}>
                   Campo obligatorio. Escriba su mensaje.
                 </span>
 
@@ -463,7 +463,11 @@ export default function Footer({ subBg }) {
                 )}
 
                 {status.type && (
-                  <div role="status" aria-live="polite" className="sr-only">
+                  <div
+                    role="status"
+                    aria-live="polite"
+                    className={styles.srOnly}
+                  >
                     {status.msg}
                   </div>
                 )}

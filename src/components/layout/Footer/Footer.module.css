@@ -1,7 +1,7 @@
 .footer {
   width: 100%;
-  background-color: #1a1a1a;
-  color: #ffffff;
+  background-color: #f2f0ef;
+  color: #111111;
   font-family: var(--font-primary);
 }
 
@@ -11,7 +11,9 @@
 }
 
 .egFooterTop {
-  padding: var(--space-xl) 0;
+  padding: 60px 0 40px;
+  min-height: 36rem;
+  position: relative;
 }
 
 .container {
@@ -22,17 +24,21 @@
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  gap: var(--space-xl);
+  gap: 30px;
+  align-items: flex-start;
+  position: relative;
+  z-index: 1;
 }
 
 .egContactCol {
-  flex: 1;
+  flex: 1 1 45%;
+  max-width: 32.5rem;
 }
 
 .egContactCol h3 {
-  font-size: 1.2rem;
-  letter-spacing: 2px;
-  margin-bottom: var(--space-lg);
+  font-size: 1.1rem;
+  letter-spacing: 1px;
+  margin-bottom: 18px;
   color: #c9961a;
 }
 
@@ -47,7 +53,8 @@
 
 .egContactList li {
   display: flex;
-  gap: var(--space-md);
+  gap: 12px;
+  margin-bottom: 14px;
   align-items: flex-start;
 }
 
@@ -65,33 +72,42 @@
 
 .egContactList strong {
   display: block;
-  font-size: 0.9rem;
-  color: #ffffff;
-  margin-bottom: var(--space-xs);
+  font-size: 13px;
+  color: #111111;
+  margin-bottom: 2px;
 }
 
 .egContactList div {
-  font-size: 0.85rem;
-  color: #999999;
+  font-size: 13px;
+  color: #666666;
 }
 
 .egFormCol {
-  flex: 1;
+  flex: 1 1 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
 }
 
 .egFormCard {
-  background-color: #222222;
-  padding: var(--space-lg);
-  border-radius: 8px;
-  border: 1px solid rgba(255, 255, 255, 0.05);
+  background: #ededed;
+  padding: 3rem;
+  top: -18rem;
+  position: absolute;
+  border-radius: 15px;
+  width: 100%;
+  max-width: 33rem;
+  border: 1px solid rgba(0, 0, 0, 0.05);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.12);
 }
 
 .egFormCard h4 {
-  font-size: 1rem;
+  font-size: 1.1rem;
   letter-spacing: 1px;
-  text-align: right;
-  margin-bottom: var(--space-lg);
-  color: #ffffff;
+  text-align: left;
+  margin: 0 0 10px;
+  color: #111111;
 }
 
 .egContactForm {
@@ -103,7 +119,7 @@
 .inputLabel {
   font-size: 0.8rem;
   font-weight: 600;
-  color: #cccccc;
+  color: #3a3a3a;
   text-transform: uppercase;
   letter-spacing: 0.5px;
 }
@@ -111,13 +127,14 @@
 .formInput,
 .formTextarea {
   width: 100%;
-  background-color: #1a1a1a;
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  border-radius: 4px;
-  padding: var(--space-sm);
-  color: #ffffff;
+  background: #fafafa;
+  border: 1px solid #e6e6e6;
+  border-radius: 6px;
+  padding: 10px 12px;
+  margin-bottom: 10px;
+  color: #111111;
   font-family: inherit;
-  font-size: 0.9rem;
+  font-size: 14px;
   transition: border-color 0.2s ease;
 }
 
@@ -131,7 +148,10 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: var(--space-md);
+  gap: 10px;
+  overflow: hidden;
+  position: relative;
+  z-index: 1000;
 }
 
 .egBtnPrimary {
@@ -165,7 +185,7 @@
 
 .egFooterSocial h5 {
   font-size: 0.85rem;
-  color: #999999;
+  color: #666666;
   margin-bottom: var(--space-sm);
 }
 
@@ -176,7 +196,7 @@
 }
 
 .egSocial {
-  color: #999999;
+  color: #666666;
   transition: color 0.2s ease;
 }
 
@@ -195,6 +215,18 @@
   font-size: 0.8rem;
   text-align: center;
   margin-top: var(--space-xs);
+}
+
+.srOnly {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
 }
 
 /* Modal Accesible Nativo */
@@ -257,9 +289,25 @@
 
 /* Responsivo Móvil */
 @media (max-width: 991px) {
+  .egFooterTop {
+    padding: 2rem 0 1rem;
+    min-height: auto;
+  }
+
   .container {
     flex-direction: column;
-    gap: var(--space-xl);
+    gap: 20px;
+  }
+
+  .egFormCol {
+    margin-top: 1.2rem;
+  }
+
+  .egFormCard {
+    padding: 0.3rem;
+    top: 0;
+    position: relative;
+    max-width: 100%;
   }
 
   .egFormCard h4 {

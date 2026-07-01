@@ -1,4 +1,5 @@
 import React from "react";
+import styles from "./Header.module.css";
 
 function Header({ data, subBg, background }) {
   if (!data) {
@@ -8,31 +9,30 @@ function Header({ data, subBg, background }) {
     throw new Error("Data is missing required properties in Header component");
   }
   return (
-    <header className="eg-header-base">
+    <header className={styles.header}>
       <div
-        className="background-img"
+        className={styles.backgroundImage}
         style={{
           backgroundImage: `url(${background || data.background})`,
         }}
         aria-hidden="true"
       />
-      <div className="background-img" />
-      <div className="container mt-80">
-        <div className="row align-items-center">
-          <div className="col-lg-7">
-            <div className="caption">
-              <p className="eg-header-eyebrow">{data.subTitle}</p>
-              <h1 className="eg-header-title">{data.title}</h1>
+      <div className={styles.backgroundOverlay} aria-hidden="true" />
+      <div className={styles.container}>
+        <div className={styles.grid}>
+          <div>
+            <div className={styles.caption}>
+              <p className={styles.eyebrow}>{data.subTitle}</p>
+              <h1 className={styles.title}>{data.title}</h1>
             </div>
           </div>
-          <div className="col-lg-5 valign">
-            <div className="eg-header-description">
+          <div className={styles.descriptionWrap}>
+            <div className={styles.description}>
               <p>
                 Impulsa tu marca con soluciones publicitarias a medida. En
                 Elephant Group, te guiamos de principio a fin para que tu
                 empresa destaque con una imagen profesional y efectiva.
               </p>
-              <br />
               <p>
                 Somos expertos en señalética, material POP, gigantografías y
                 merchandising en Viña del Mar, Valparaiso y V Region. Confía en

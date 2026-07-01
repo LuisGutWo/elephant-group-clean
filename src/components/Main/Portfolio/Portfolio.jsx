@@ -9,10 +9,10 @@ const portfolioData = [
     title: "LETREROS",
     subtitle: "publicitarios y corporativos",
     description: "Para destacar tu negocio y atraer clientes.",
-    image: "/assets/light/imgs/works/corte_el_brioche.webp",
+    image: "/images/works/corte_el_brioche.webp",
     category: "Letreros",
     keywords:
-      "letreros publicitarios, letreros corporativos, señalización comercial Viña del Mar, Valparaiso y V Region",
+      "letreros publicitarios, letreros corporativos, señalización comercial Viña del Mar, Valparaíso y V Región",
     priceRange: "Desde $25.000",
     brand: "Elephant Group",
   },
@@ -21,10 +21,10 @@ const portfolioData = [
     title: "SEÑALÉTICAS",
     subtitle: "industriales",
     description: "Cumple normativa y mejora la seguridad.",
-    image: "/assets/light/imgs/works/letrero_covisa.webp",
+    image: "/images/works/letrero_covisa.webp",
     category: "Señaléticas",
     keywords:
-      "señalética industrial, señalización de seguridad, letreros corporativos Viña del Mar, Valparaiso y V Region",
+      "señalética industrial, señalización de seguridad, letreros corporativos Viña del Mar, Valparaíso y V Región",
     priceRange: "Desde $18.000",
     brand: "Elephant Group",
   },
@@ -33,10 +33,10 @@ const portfolioData = [
     title: "ADHESIVOS",
     subtitle: "personalizados",
     description: "Refuerza tu marca en cada espacio.",
-    image: "/assets/light/imgs/works/Adhesivos-Personalizarme.webp",
+    image: "/images/works/Adhesivos-Personalizarme.webp",
     category: "Adhesivos",
     keywords:
-      "adhesivos personalizados, vinilos publicitarios, etiquetas corporativas Viña del Mar, Valparaiso y V Region",
+      "adhesivos personalizados, vinilos publicitarios, etiquetas corporativas Viña del Mar, Valparaíso y V Región",
     priceRange: "Desde $8.000",
     brand: "Elephant Group",
   },
@@ -64,17 +64,17 @@ function Portfolio() {
       >
         <span itemProp="name">Elephant Group</span>
         <span itemProp="description">
-          Fabricación de implementos publicitarios en Viña del Mar, Valparaiso y
-          V Region
+          Fabricación de implementos publicitarios en Viña del Mar, Valparaíso y
+          V Región
         </span>
         <span itemProp="telephone">+56951631370</span>
-        <span itemProp="areaServed">Viña del Mar, Valparaiso y V Region</span>
+        <span itemProp="areaServed">Viña del Mar, Valparaíso y V Región</span>
         <div itemProp="address" itemScope itemType="https://schema.org">
           <span itemProp="addressLocality">
-            Viña del Mar, Valparaiso y V Region
+            Viña del Mar, Valparaíso y V Región
           </span>
           <span itemProp="addressRegion">
-            Viña del Mar, Valparaiso y V Region
+            Viña del Mar, Valparaíso y V Región
           </span>
           <span itemProp="addressCountry">CL</span>
         </div>
@@ -197,8 +197,8 @@ function Portfolio() {
                     <Link
                       href="/portfolio"
                       className={styles.portfolioBtn}
-                      aria-label={`Ver catálogo completo de ${item.title.toLowerCase()} en Viña del Mar, Valparaiso y V Region`}
-                      title={`${item.priceRange} - ${item.title} ${item.subtitle} en Viña del Mar, Valparaiso y V Region`}
+                      aria-label={`Ver catálogo completo de ${item.title.toLowerCase()} en Viña del Mar, Valparaíso y V Región`}
+                      title={`${item.priceRange} - ${item.title} ${item.subtitle} en Viña del Mar, Valparaíso y V Región`}
                     >
                       Ver Catálogo
                       <svg

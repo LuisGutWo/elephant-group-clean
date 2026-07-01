@@ -90,8 +90,8 @@ function TermsAndConditions() {
           "https://landingclientes.elephantgroup.cl/dark/assets/imgs/logo-light.webp",
         address: {
           "@type": "PostalAddress",
-          addressLocality: "Viña del Mar, Valparaiso y V Region",
-          addressRegion: "V Region",
+          addressLocality: "Viña del Mar, Valparaíso y V Región",
+          addressRegion: "V Región",
           postalCode: "2340000",
           addressCountry: "CL",
         },
@@ -155,7 +155,7 @@ function TermsAndConditions() {
         twitterDescription="Conoce nuestras condiciones generales de servicio: políticas de cotización, pagos, plazos, garantías y responsabilidades."
         twitterImage="https://landingclientes.elephantgroup.cl/dark/assets/imgs/logo-light.webp"
         geoRegion="CL-VS"
-        geoPlacename="Viña del Mar, Valparaiso y V Region"
+        geoPlacename="Viña del Mar, Valparaíso y V Región"
         geoPosition="-33.0472;-71.6127"
         icbm="-33.0472, -71.6127"
         themeColor="#c9961a"

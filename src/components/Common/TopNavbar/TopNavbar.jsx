@@ -2,7 +2,7 @@ import React from "react";
 import { useRouter } from "next/router";
 import styles from "./TopNavbar.module.css";
 
-const TopNavbar = ({ mainBg, curve }) => {
+const TopNavbar = ({ mainBg, curve, hidden = false }) => {
   const router = useRouter();
 
   const handleWhatsAppClick = () => {
@@ -49,7 +49,7 @@ const TopNavbar = ({ mainBg, curve }) => {
     <nav
       className={`${styles.topNavbar} ${mainBg ? styles.mainBg : ""} ${
         curve ? styles.curve : ""
-      }`}
+      } ${hidden ? styles.hidden : ""}`}
     >
       <div className={styles.container}>
         {/* Redes sociales - Izquierda */}

@@ -6,8 +6,10 @@ export default function Document() {
       <Head>
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link
-          rel="preconnect"
-          href="https://fonts.gstatic.com"
+          rel="preload"
+          href="/fonts/FontsFree-Net-coolvetica-regular.ttf"
+          as="font"
+          type="font/ttf"
           crossOrigin="anonymous"
         />
         <link

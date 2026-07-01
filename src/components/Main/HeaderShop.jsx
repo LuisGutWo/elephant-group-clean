@@ -1,20 +1,21 @@
-import React from 'react'
+import React from "react";
+import styles from "./HeaderShop.module.css";
 
 function Header({ data }) {
   return (
-    <header className="work-header section-padding pb-0">
-      <div className="container mt-80">
-        <div className="row">
-          <div className="col-12">
-            <div className="caption">
-              <h6 className="sub-title">{data.subTitle}</h6>
-              <h1>{data.title}</h1>
+    <header className={styles.header}>
+      <div className={styles.container}>
+        <div className={styles.row}>
+          <div className={styles.fullCol}>
+            <div className={styles.caption}>
+              <h6 className={styles.subTitle}>{data.subTitle}</h6>
+              <h1 className={styles.title}>{data.title}</h1>
             </div>
           </div>
         </div>
       </div>
     </header>
-  )
+  );
 }
 
-export default Header
+export default Header;

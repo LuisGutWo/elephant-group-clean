@@ -1,23 +1,48 @@
 .footerImageInner {
+  position: relative;
+  overflow: hidden;
+  height: 27rem;
   width: 100%;
   display: flex;
+  align-items: flex-start;
   justify-content: center;
-  align-items: center;
-  background-color: var(--bg-color);
-  overflow: hidden;
-  padding: var(--space-md) 0;
+}
+
+.footerImageInner::after {
+  content: "";
+  background-color: #0b0b0b1f;
+  opacity: 0.9;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  z-index: 1;
 }
 
 .footerMainImage {
-  max-width: 100%;
-  height: auto;
+  width: 100%;
+  height: 100%;
   object-fit: cover;
+  object-position: bottom center;
   display: block;
 }
 
-/* Ajustes de optimización para pantallas móviles */
+@media (max-width: 992px) {
+  .footerImageInner {
+    height: 180px;
+    min-height: 120px;
+    max-height: 220px;
+  }
+}
+
 @media (max-width: 768px) {
   .footerImageInner {
-    padding: var(--space-sm) 0;
+    height: 120px;
+  }
+
+  .footerMainImage {
+    object-position: center;
+    object-fit: contain;
   }
 }

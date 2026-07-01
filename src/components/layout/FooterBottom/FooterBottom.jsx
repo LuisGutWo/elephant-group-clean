@@ -5,7 +5,7 @@ import styles from "./FooterBottom.module.css";
 
 const FooterBottom = () => {
   // Se cambia la ruta antigua a la ubicación moderna unificada
-  const logoSrc = "/assets/light/imgs/logo-eg-new.webp";
+  const logoSrc = "/images/logo/logo-eg-new-loading.png";
 
   return (
     <footer

@@ -8,12 +8,12 @@ function AboutUs() {
       <div className={styles.container}>
         <h2 className={styles.sectionTitle}>Nosotros</h2>
         <p className={styles.sectionDescription}>
-          En <strong>Elephant Group</strong> sabemos lo important que es para tu
-          negocio contar con{" "}
+          En <strong>Elephant Group</strong> sabemos lo importante que es para
+          tu negocio contar con{" "}
           <strong>productos de calidad, personalizados y a tiempo.</strong> Por
           eso trabajamos con los mejores materiales, diseñamos soluciones únicas
           que reflejan tu identidad y aseguramos{" "}
-          <strong>tiempos de entrega rápidos</strong> para que siempre estén un
+          <strong>tiempos de entrega rápidos</strong> para que siempre estés un
           paso adelante.
         </p>
 

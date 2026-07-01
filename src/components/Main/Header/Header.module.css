@@ -52,30 +52,39 @@
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  gap: var(--space-lg);
-  max-width: 800px;
+  gap: var(--space-md);
+  max-width: 920px;
 }
 
 .captionGlass {
-  background: rgba(255, 255, 255, 0.05);
+  position: relative;
+  background: rgba(40, 40, 40, 0.4);
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
   border: 1px solid rgba(255, 255, 255, 0.1);
-  border-radius: 16px;
-  padding: var(--space-lg);
-  width: 100%;
+  border-radius: 0 1.875rem 1.875rem 0;
+  padding: 1.5rem 2.5rem 1.5rem 0;
+  margin-left: -9rem;
+  padding-left: 6rem;
+  margin-top: 2rem;
+  box-shadow: 0 0.5rem 2rem rgba(0, 0, 0, 0.3);
+  width: min(100%, 700px);
+}
+
+.captionContent {
+  max-width: 620px;
 }
 
 .eyebrow {
   color: #ffffff;
-  font-size: 2.5rem;
-  font-weight: 700;
-  line-height: 1.2;
-  letter-spacing: -0.5px;
+  font-size: clamp(1.25rem, 3vw, 2.35rem);
+  font-weight: 600;
+  line-height: 1.35;
+  letter-spacing: 0;
 }
 
 .captionButtonContainer {
-  margin-top: var(--space-xs);
+  margin-top: 0.35rem;
 }
 
 .navLink {
@@ -116,8 +125,8 @@
 
 .setting {
   position: absolute;
-  bottom: 40px;
-  right: 40px;
+  bottom: 34px;
+  right: 34px;
   z-index: 10;
 }
 
@@ -171,8 +180,8 @@
   font-size: 0.85rem;
   font-family: var(--font-primary);
   position: absolute;
-  bottom: 55px;
-  left: 40px;
+  bottom: 48px;
+  left: 34px;
   width: auto;
   z-index: 10;
 }
@@ -185,12 +194,25 @@
 
 /* Responsivo */
 @media (max-width: 768px) {
+  .container {
+    padding-inline: 0.75rem;
+  }
+
+  .contentGrid {
+    max-width: 100%;
+  }
+
   .eyebrow {
-    font-size: 1.8rem;
+    font-size: 1.22rem;
+    line-height: 1.4;
   }
 
   .captionGlass {
-    padding: var(--space-md);
+    width: 100%;
+    margin-left: 0;
+    margin-top: 0.75rem;
+    padding: 1rem 1rem 1rem 1.1rem;
+    border-radius: 0.9rem;
   }
 
   .topNavbarButton {
@@ -199,12 +221,12 @@
   }
 
   .setting {
-    bottom: 20px;
-    right: 20px;
+    bottom: 18px;
+    right: 14px;
   }
 
   .sliderPrlx :global(.swiper-pagination-fraction) {
-    bottom: 35px;
-    left: 20px;
+    bottom: 31px;
+    left: 12px;
   }
 }

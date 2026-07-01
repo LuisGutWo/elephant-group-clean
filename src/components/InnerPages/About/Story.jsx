@@ -3,33 +3,19 @@ import Image from "next/image";
 
 //= Modules
 import { Swiper, SwiperSlide } from "swiper/react";
-import {
-  Navigation,
-  Autoplay,
-  Pagination,
-  Parallax,
-  EffectFade,
-} from "swiper/modules";
+import { Navigation, Autoplay, Pagination, EffectFade } from "swiper/modules";
 
 import data from "@/data/Main/portfolioGalleryPage.json";
-import loadBackgroudImages from "@/common/loadBackgroudImages";
+import styles from "./Story.module.css";
 
 const swiperOptions = {
-  modules: [Navigation, Autoplay, Pagination, Parallax, EffectFade],
+  modules: [Navigation, Autoplay, Pagination, EffectFade],
   effect: "fade",
   speed: 1500,
   autoplay: {
     delay: 3000,
   },
-  parallax: true,
   loop: true,
-  onSwiper: function (swiper) {
-    for (var i = 0; i < swiper.slides.length; i++) {
-      swiper.slides[i]
-        .querySelector(".bg-img")
-        .setAttribute("data-swiper-parallax", 0 * swiper.width);
-    }
-  },
   onResize: function (swiper) {
     swiper.update();
   },
@@ -49,39 +35,25 @@ function Story() {
 
   useEffect(() => {
     setLoadSwiper(true);
-    loadBackgroudImages();
   }, []);
 
-  useEffect(() => {
-    if (loadSwiper) loadBackgroudImages();
-  }, [loadSwiper]);
-
   return (
-    <section className="pg-about section-padding sub-bg">
-      <div className="container">
-        <div className="row">
-          <div className="col-lg-4">
+    <section className={styles.section}>
+      <div className={styles.container}>
+        <div className={styles.grid}>
+          <div className={styles.mediaColSmall}>
             {loadSwiper && (
-              <Swiper
-                {...swiperOptions}
-                className="swiper-container parallax-slider"
-              >
+              <Swiper {...swiperOptions} className={styles.slider}>
                 {[0, 1, 4, 5, 6, 2, 3].map((i) => (
                   <SwiperSlide key={i}>
                     <div
-                      className="bg-img radius-10 md-mb50"
-                      style={{
-                        position: "relative",
-                        width: "100%",
-                        aspectRatio: "6/1",
-                        minHeight: 120,
-                      }}
+                      className={`${styles.slideFrame} ${styles.slideFrameSmall}`}
                     >
                       <Image
                         src={data.gallery[i].image}
                         alt={`Proyecto ${data.gallery[i].type} ${data.gallery[i].year}`}
                         fill
-                        style={{ objectFit: "cover", borderRadius: "10px" }}
+                        className={styles.slideImage}
                         sizes="(max-width: 991px) 100vw, 400px"
                         priority={i === 0}
                         loading={i === 0 ? "eager" : "lazy"}
@@ -92,28 +64,19 @@ function Story() {
               </Swiper>
             )}
           </div>
-          <div className="col-lg-8">
+          <div className={styles.mediaColWide}>
             {loadSwiper && (
-              <Swiper
-                {...swiperOptions}
-                className="swiper-container parallax-slider"
-              >
+              <Swiper {...swiperOptions} className={styles.slider}>
                 {[2, 3, 0, 1, 4, 5, 6].map((i) => (
                   <SwiperSlide key={i}>
                     <div
-                      className="bg-img radius-10"
-                      style={{
-                        position: "relative",
-                        width: "100%",
-                        aspectRatio: "6/1",
-                        minHeight: 120,
-                      }}
+                      className={`${styles.slideFrame} ${styles.slideFrameWide}`}
                     >
                       <Image
                         src={data.gallery[i].image}
                         alt={`Proyecto ${data.gallery[i].type} ${data.gallery[i].year}`}
                         fill
-                        style={{ objectFit: "cover", borderRadius: "10px" }}
+                        className={styles.slideImage}
                         sizes="(max-width: 991px) 100vw, 800px"
                         priority={i === 2}
                         loading={i === 2 ? "eager" : "lazy"}
@@ -124,17 +87,17 @@ function Story() {
               </Swiper>
             )}
           </div>
-          <div className="col-lg-4">
-            <div className="sec-head mt-80">
-              <h2 className="sub-title">Nuestra Historia</h2>
+          <div className={styles.headingCol}>
+            <div className={styles.secHead}>
+              <h2 className={styles.subTitle}>Nuestra Historia</h2>
             </div>
           </div>
-          <div className="col-lg-8">
-            <div className="cont mt-80">
-              <h3 className="story-headline">
+          <div className={styles.contentCol}>
+            <div className={styles.content}>
+              <h3 className={styles.storyHeadline}>
                 Desde 2018 transformando marcas en la V Región
               </h3>
-              <p className="story-text">
+              <p className={styles.storyText}>
                 <strong>Elephant Group</strong> nació en 2018 en Viña del Mar
                 con una visión clara:
                 <strong> revolucionar la publicidad en la región</strong>. Lo
@@ -145,7 +108,7 @@ function Story() {
                 </strong>
                 .
               </p>
-              <p className="story-text">
+              <p className={styles.storyText}>
                 En 6 años hemos producido más de{" "}
                 <strong>500 proyectos exitosos</strong>, desde señalética
                 corporativa hasta campañas de marketing visual completas.
@@ -153,7 +116,7 @@ function Story() {
                 <strong>destacar en su mercado</strong> con soluciones creativas
                 y productos de alta calidad.
               </p>
-              <p className="story-text">
+              <p className={styles.storyText}>
                 Nuestra fortaleza está en combinar{" "}
                 <strong>diseño innovador, producción local</strong> y un
                 servicio personalizado que entiende las necesidades reales de

@@ -92,8 +92,8 @@ function PrivacyPolicy() {
           "https://landingclientes.elephantgroup.cl/dark/assets/imgs/logo-light.webp",
         address: {
           "@type": "PostalAddress",
-          addressLocality: "Viña del Mar, Valparaiso y V Region",
-          addressRegion: "V Region",
+          addressLocality: "Viña del Mar, Valparaíso y V Región",
+          addressRegion: "V Región",
           postalCode: "2340000",
           addressCountry: "CL",
         },
