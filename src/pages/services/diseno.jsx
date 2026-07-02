@@ -45,7 +45,7 @@ function DisenoGraficoPage() {
         <meta name="author" content="Elephant Group" />
         <link
           rel="canonical"
-          href="https://landingclientes.elephantgroup.cl/services/diseno"
+          href="https://www.elephantgroup.cl/services/diseno"
         />
       </Head>{" "}
       <Navbar mainBg />
@@ -62,3 +62,4 @@ function DisenoGraficoPage() {
 DisenoGraficoPage.getLayout = (page) => <Layout>{page}</Layout>;
 
 export default DisenoGraficoPage;
+

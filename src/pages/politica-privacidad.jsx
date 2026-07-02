@@ -18,18 +18,18 @@ function PrivacyPolicy() {
     "@graph": [
       {
         "@type": "WebPage",
-        "@id": "https://landingclientes.elephantgroup.cl/politica-privacidad",
-        url: "https://landingclientes.elephantgroup.cl/politica-privacidad",
+        "@id": "https://www.elephantgroup.cl/politica-privacidad",
+        url: "https://www.elephantgroup.cl/politica-privacidad",
         name: "Política de Privacidad - Elephant Group",
         description:
           "Política de privacidad de Elephant Group. Conoce cómo protegemos y gestionamos tu información personal de manera responsable y transparente.",
         inLanguage: "es-CL",
         isPartOf: {
-          "@id": "https://landingclientes.elephantgroup.cl/#website",
+          "@id": "https://www.elephantgroup.cl/#website",
         },
         breadcrumb: {
           "@id":
-            "https://landingclientes.elephantgroup.cl/politica-privacidad#breadcrumb",
+            "https://www.elephantgroup.cl/politica-privacidad#breadcrumb",
         },
         datePublished: "2025-01-01T00:00:00+00:00",
         dateModified: "2025-11-24T00:00:00+00:00",
@@ -37,31 +37,31 @@ function PrivacyPolicy() {
       {
         "@type": "BreadcrumbList",
         "@id":
-          "https://landingclientes.elephantgroup.cl/politica-privacidad#breadcrumb",
+          "https://www.elephantgroup.cl/politica-privacidad#breadcrumb",
         itemListElement: [
           {
             "@type": "ListItem",
             position: 1,
             name: "Inicio",
-            item: "https://landingclientes.elephantgroup.cl/",
+            item: "https://www.elephantgroup.cl/",
           },
           {
             "@type": "ListItem",
             position: 2,
             name: "Política de Privacidad",
-            item: "https://landingclientes.elephantgroup.cl/politica-privacidad",
+            item: "https://www.elephantgroup.cl/politica-privacidad",
           },
         ],
       },
       {
         "@type": "Organization",
-        "@id": "https://landingclientes.elephantgroup.cl/#organization",
+        "@id": "https://www.elephantgroup.cl/#organization",
         name: "Elephant Group",
         alternateName: "LAGmedia",
-        url: "https://landingclientes.elephantgroup.cl/",
+        url: "https://www.elephantgroup.cl/",
         logo: {
           "@type": "ImageObject",
-          url: "https://landingclientes.elephantgroup.cl/dark/assets/imgs/logo-light.webp",
+          url: "https://www.elephantgroup.cl/dark/assets/imgs/logo-light.webp",
           width: 250,
           height: 80,
         },
@@ -86,10 +86,10 @@ function PrivacyPolicy() {
       },
       {
         "@type": "LocalBusiness",
-        "@id": "https://landingclientes.elephantgroup.cl/#localbusiness",
+        "@id": "https://www.elephantgroup.cl/#localbusiness",
         name: "Elephant Group",
         image:
-          "https://landingclientes.elephantgroup.cl/dark/assets/imgs/logo-light.webp",
+          "https://www.elephantgroup.cl/dark/assets/imgs/logo-light.webp",
         address: {
           "@type": "PostalAddress",
           addressLocality: "Viña del Mar, Valparaíso y V Región",
@@ -117,7 +117,7 @@ function PrivacyPolicy() {
       {
         "@type": "PrivacyPolicy",
         "@id":
-          "https://landingclientes.elephantgroup.cl/politica-privacidad#policy",
+          "https://www.elephantgroup.cl/politica-privacidad#policy",
         name: "Política de Privacidad",
         description:
           "Política de privacidad que describe cómo Elephant Group recopila, usa y protege la información personal de sus usuarios.",
@@ -125,7 +125,7 @@ function PrivacyPolicy() {
         dateModified: "2025-11-24T00:00:00+00:00",
         inLanguage: "es-CL",
         publisher: {
-          "@id": "https://landingclientes.elephantgroup.cl/#organization",
+          "@id": "https://www.elephantgroup.cl/#organization",
         },
       },
     ],
@@ -141,21 +141,21 @@ function PrivacyPolicy() {
         robots="index, follow"
         language="Spanish"
         revisitAfter="7 days"
-        canonical="https://landingclientes.elephantgroup.cl/politica-privacidad"
+        canonical="https://www.elephantgroup.cl/politica-privacidad"
         ogType="website"
-        ogUrl="https://landingclientes.elephantgroup.cl/politica-privacidad"
+        ogUrl="https://www.elephantgroup.cl/politica-privacidad"
         ogTitle="Política de Privacidad - Elephant Group | Protección de Datos"
         ogDescription="Tu privacidad es nuestra prioridad. Conoce cómo Elephant Group protege y gestiona tu información personal de forma segura y transparente."
-        ogImage="https://landingclientes.elephantgroup.cl/dark/assets/imgs/logo-light.webp"
+        ogImage="https://www.elephantgroup.cl/dark/assets/imgs/logo-light.webp"
         ogImageWidth="1200"
         ogImageHeight="630"
         ogLocale="es_CL"
         ogSiteName="Elephant Group"
         twitterCard="summary_large_image"
-        twitterUrl="https://landingclientes.elephantgroup.cl/politica-privacidad"
+        twitterUrl="https://www.elephantgroup.cl/politica-privacidad"
         twitterTitle="Política de Privacidad - Elephant Group"
         twitterDescription="Protegemos tu información personal con los más altos estándares de seguridad y transparencia."
-        twitterImage="https://landingclientes.elephantgroup.cl/dark/assets/imgs/logo-light.webp"
+        twitterImage="https://www.elephantgroup.cl/dark/assets/imgs/logo-light.webp"
         geoRegion="CL-VS"
         geoPlacename="Valparaíso"
         geoPosition="-33.0472;-71.6127"
@@ -184,3 +184,4 @@ export async function getStaticProps() {
     },
   };
 }
+

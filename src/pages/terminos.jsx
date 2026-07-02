@@ -18,48 +18,48 @@ function TermsAndConditions() {
     "@graph": [
       {
         "@type": "WebPage",
-        "@id": "https://landingclientes.elephantgroup.cl/terminos",
-        url: "https://landingclientes.elephantgroup.cl/terminos",
+        "@id": "https://www.elephantgroup.cl/terminos",
+        url: "https://www.elephantgroup.cl/terminos",
         name: "Términos y Condiciones - Elephant Group",
         description:
           "Términos y condiciones que regulan el uso de los servicios de Elephant Group: implementos publicitarios, señalética, diseño gráfico y productos relacionados.",
         inLanguage: "es-CL",
         isPartOf: {
-          "@id": "https://landingclientes.elephantgroup.cl/#website",
+          "@id": "https://www.elephantgroup.cl/#website",
         },
         breadcrumb: {
-          "@id": "https://landingclientes.elephantgroup.cl/terminos#breadcrumb",
+          "@id": "https://www.elephantgroup.cl/terminos#breadcrumb",
         },
         datePublished: "2025-01-01T00:00:00+00:00",
         dateModified: "2025-11-24T00:00:00+00:00",
       },
       {
         "@type": "BreadcrumbList",
-        "@id": "https://landingclientes.elephantgroup.cl/terminos#breadcrumb",
+        "@id": "https://www.elephantgroup.cl/terminos#breadcrumb",
         itemListElement: [
           {
             "@type": "ListItem",
             position: 1,
             name: "Inicio",
-            item: "https://landingclientes.elephantgroup.cl/",
+            item: "https://www.elephantgroup.cl/",
           },
           {
             "@type": "ListItem",
             position: 2,
             name: "Términos y Condiciones",
-            item: "https://landingclientes.elephantgroup.cl/terminos",
+            item: "https://www.elephantgroup.cl/terminos",
           },
         ],
       },
       {
         "@type": "Organization",
-        "@id": "https://landingclientes.elephantgroup.cl/#organization",
+        "@id": "https://www.elephantgroup.cl/#organization",
         name: "Elephant Group",
         alternateName: "LAGmedia",
-        url: "https://landingclientes.elephantgroup.cl/",
+        url: "https://www.elephantgroup.cl/",
         logo: {
           "@type": "ImageObject",
-          url: "https://landingclientes.elephantgroup.cl/dark/assets/imgs/logo-light.webp",
+          url: "https://www.elephantgroup.cl/dark/assets/imgs/logo-light.webp",
           width: 250,
           height: 80,
         },
@@ -84,10 +84,10 @@ function TermsAndConditions() {
       },
       {
         "@type": "LocalBusiness",
-        "@id": "https://landingclientes.elephantgroup.cl/#localbusiness",
+        "@id": "https://www.elephantgroup.cl/#localbusiness",
         name: "Elephant Group",
         image:
-          "https://landingclientes.elephantgroup.cl/dark/assets/imgs/logo-light.webp",
+          "https://www.elephantgroup.cl/dark/assets/imgs/logo-light.webp",
         address: {
           "@type": "PostalAddress",
           addressLocality: "Viña del Mar, Valparaíso y V Región",
@@ -114,7 +114,7 @@ function TermsAndConditions() {
       },
       {
         "@type": "TermsOfService",
-        "@id": "https://landingclientes.elephantgroup.cl/terminos#tos",
+        "@id": "https://www.elephantgroup.cl/terminos#tos",
         name: "Términos y Condiciones de Servicio",
         description:
           "Términos y condiciones que regulan la relación comercial entre Elephant Group y sus clientes para servicios de implementos publicitarios, señalética y diseño gráfico.",
@@ -122,9 +122,9 @@ function TermsAndConditions() {
         dateModified: "2025-11-24T00:00:00+00:00",
         inLanguage: "es-CL",
         publisher: {
-          "@id": "https://landingclientes.elephantgroup.cl/#organization",
+          "@id": "https://www.elephantgroup.cl/#organization",
         },
-        termsOfService: "https://landingclientes.elephantgroup.cl/terminos",
+        termsOfService: "https://www.elephantgroup.cl/terminos",
       },
     ],
   };
@@ -139,21 +139,21 @@ function TermsAndConditions() {
         robots="index, follow"
         language="Spanish"
         revisitAfter="7 days"
-        canonical="https://landingclientes.elephantgroup.cl/terminos"
+        canonical="https://www.elephantgroup.cl/terminos"
         ogType="website"
-        ogUrl="https://landingclientes.elephantgroup.cl/terminos"
+        ogUrl="https://www.elephantgroup.cl/terminos"
         ogTitle="Términos y Condiciones - Elephant Group"
         ogDescription="Condiciones generales que regulan el uso de nuestros servicios de implementos publicitarios, señalética y diseño gráfico. Información sobre cotizaciones, pagos, plazos y garantías."
-        ogImage="https://landingclientes.elephantgroup.cl/dark/assets/imgs/logo-light.webp"
+        ogImage="https://www.elephantgroup.cl/dark/assets/imgs/logo-light.webp"
         ogImageWidth="1200"
         ogImageHeight="630"
         ogLocale="es_CL"
         ogSiteName="Elephant Group"
         twitterCard="summary_large_image"
-        twitterUrl="https://landingclientes.elephantgroup.cl/terminos"
+        twitterUrl="https://www.elephantgroup.cl/terminos"
         twitterTitle="Términos y Condiciones - Elephant Group"
         twitterDescription="Conoce nuestras condiciones generales de servicio: políticas de cotización, pagos, plazos, garantías y responsabilidades."
-        twitterImage="https://landingclientes.elephantgroup.cl/dark/assets/imgs/logo-light.webp"
+        twitterImage="https://www.elephantgroup.cl/dark/assets/imgs/logo-light.webp"
         geoRegion="CL-VS"
         geoPlacename="Viña del Mar, Valparaíso y V Región"
         geoPosition="-33.0472;-71.6127"
@@ -182,3 +182,4 @@ export async function getStaticProps() {
     },
   };
 }
+

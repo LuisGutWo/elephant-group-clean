@@ -42,7 +42,13 @@ const WhatsAppButton = () => {
     };
   }, [isExpanded, isMinimized]);
 
-  const whatsappNumber = process.env.NEXT_PUBLIC_WHATSAPP_PHONE;
+  const whatsappNumber =
+    process.env.NEXT_PUBLIC_WHATSAPP_PHONE ||
+    process.env.NEXT_PUBLIC_WHATSAPP_NUMBER ||
+    "56993239203";
+
+  const buildWhatsAppUrl = (message) =>
+    `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(message)}`;
 
   const quickActions = [
     {
@@ -108,18 +114,16 @@ const WhatsAppButton = () => {
   ];
 
   const handleQuickAction = (message) => {
-    const url = `https://whatsapp.com{whatsappNumber}&text=${encodeURIComponent(
-      message,
-    )}`;
+    const url = buildWhatsAppUrl(message);
     window.open(url, "_blank", "noopener noreferrer");
     setIsExpanded(false);
   };
 
   const handleMainClick = () => {
     if (!isExpanded) {
-      const url = `https://whatsapp.com{whatsappNumber}&text=${encodeURIComponent(
+      const url = buildWhatsAppUrl(
         "Hola! Quiero más información sobre sus servicios.",
-      )}`;
+      );
       window.open(url, "_blank", "noopener noreferrer");
     }
   };

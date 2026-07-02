@@ -9,16 +9,19 @@ export default function SeoHead({
   schemas = [],
   noindex = false,
 }) {
+  const toAbsoluteUrl = (value, fallback) => {
+    const candidate = value || fallback;
+    if (!candidate) return siteConfig.url;
+    if (/^https?:\/\//i.test(candidate)) return candidate;
+    return `${siteConfig.url}${candidate}`;
+  };
+
   const fullTitle = title
     ? `${title} | ${siteConfig.name}`
     : `${siteConfig.name} | ${siteConfig.tagline}`;
   const metaDesc = description || siteConfig.description;
-  const canonicalUrl = canonical
-    ? `${siteConfig.url}${canonical}`
-    : siteConfig.url;
-  const image = ogImage
-    ? `${siteConfig.url}${ogImage}`
-    : `${siteConfig.url}${siteConfig.ogImage}`;
+  const canonicalUrl = toAbsoluteUrl(canonical, siteConfig.url);
+  const image = toAbsoluteUrl(ogImage, siteConfig.ogImage);
 
   return (
     <Head>

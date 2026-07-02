@@ -1,6 +1,14 @@
 import nodemailer from "nodemailer";
 import xss from "xss";
+import formidable from "formidable";
+import { readFile } from "node:fs/promises";
 import { isValidCsrf } from "./_utils/csrf";
+
+export const config = {
+  api: {
+    bodyParser: false,
+  },
+};
 
 // Local/dev fallback:
 // Loading dotenv here guarantees SMTP vars are available for local testing.
@@ -23,8 +31,25 @@ export default async function handler(req, res) {
     return;
   }
 
-  const { name, company, email, phone, details, message, recaptchaToken } =
-    req.body || {};
+  let payload;
+  try {
+    payload = await parseRequestPayload(req);
+  } catch {
+    res.status(400).json({ message: "No se pudo leer el formulario enviado." });
+    return;
+  }
+
+  const {
+    name,
+    company,
+    email,
+    phone,
+    subject,
+    details,
+    message,
+    recaptchaToken,
+    file,
+  } = payload;
 
   if (!recaptchaToken) {
     res.status(400).json({ message: "Falta el token de reCAPTCHA." });
@@ -54,8 +79,15 @@ export default async function handler(req, res) {
 
   try {
     const recaptchaRes = await fetch(
-      `https://www.google.com/recaptcha/api/siteverify?secret=${secretKey}&response=${recaptchaToken}`,
-      { method: "POST" },
+      "https://www.google.com/recaptcha/api/siteverify",
+      {
+        method: "POST",
+        headers: { "Content-Type": "application/x-www-form-urlencoded" },
+        body: new URLSearchParams({
+          secret: secretKey,
+          response: recaptchaToken,
+        }).toString(),
+      },
     );
     const recaptchaData = await recaptchaRes.json();
     if (!recaptchaData.success) {
@@ -75,10 +107,11 @@ export default async function handler(req, res) {
   const safeCompany = sanitize(company);
   const safeEmail = sanitize(email);
   const safePhone = sanitize(phone);
+  const safeSubject = sanitize(subject);
   const safeMessage = sanitize(message);
-  const safeDetails = details ? xss(JSON.stringify(details, null, 2)) : "";
+  const safeDetails = details ? xss(formatDetails(details)) : "";
 
-  if (!safeName || !safeCompany || !safeEmail || !safePhone) {
+  if (!safeName || !safeEmail || !safeMessage) {
     res.status(400).json({ message: "Faltan campos requeridos." });
     return;
   }
@@ -111,21 +144,39 @@ export default async function handler(req, res) {
 
     let html = `<h2>Nuevo contacto desde el sitio web</h2>`;
     html += `<p><b>Nombre:</b> ${safeName}</p>`;
-    html += `<p><b>Empresa:</b> ${safeCompany}</p>`;
+    if (safeCompany) {
+      html += `<p><b>Empresa:</b> ${safeCompany}</p>`;
+    }
     html += `<p><b>Email:</b> ${safeEmail}</p>`;
-    html += `<p><b>Teléfono:</b> ${safePhone}</p>`;
+    if (safePhone) {
+      html += `<p><b>Teléfono:</b> ${safePhone}</p>`;
+    }
+    if (safeSubject) {
+      html += `<p><b>Asunto:</b> ${safeSubject}</p>`;
+    }
     if (safeDetails) {
       html += `<pre>${safeDetails}</pre>`;
     }
-    if (safeMessage) {
-      html += `<p><b>Mensaje:</b> ${safeMessage}</p>`;
+    html += `<p><b>Mensaje:</b> ${safeMessage}</p>`;
+
+    const attachments = [];
+    if (file?.filepath) {
+      const fileBuffer = await readFile(file.filepath);
+      attachments.push({
+        filename: safeFileName(file.originalFilename || "adjunto"),
+        content: fileBuffer,
+        contentType: file.mimetype || "application/octet-stream",
+      });
     }
 
     const mailOptions = {
       from: `Web Contact <${SMTP_USER}>`,
       to: CONTACT_RECIPIENT,
-      subject: `Nuevo contacto de ${safeName} (${safeCompany})`,
+      subject: safeSubject
+        ? `Nuevo contacto: ${safeSubject}`
+        : `Nuevo contacto de ${safeName}`,
       html,
+      attachments,
     };
 
     await transporter.sendMail(mailOptions);
@@ -136,3 +187,81 @@ export default async function handler(req, res) {
     });
   }
 }
+
+const firstValue = (value) => {
+  if (Array.isArray(value)) return value[0] || "";
+  return value || "";
+};
+
+const safeFileName = (fileName) =>
+  String(fileName)
+    .replace(/[\\/]+/g, "_")
+    .replace(/[^a-zA-Z0-9._ -]/g, "_")
+    .slice(0, 150);
+
+const formatDetails = (details) => {
+  if (typeof details === "string") {
+    return details;
+  }
+
+  try {
+    return JSON.stringify(details, null, 2);
+  } catch {
+    return "";
+  }
+};
+
+const readRawBody = async (req) => {
+  const chunks = [];
+  for await (const chunk of req) {
+    chunks.push(Buffer.isBuffer(chunk) ? chunk : Buffer.from(chunk));
+  }
+  return Buffer.concat(chunks).toString("utf8");
+};
+
+const parseMultipart = (req) => {
+  const form = formidable({
+    multiples: false,
+    maxFileSize: 10 * 1024 * 1024,
+    allowEmptyFiles: false,
+  });
+
+  return new Promise((resolve, reject) => {
+    form.parse(req, (err, fields, files) => {
+      if (err) {
+        reject(err);
+        return;
+      }
+      resolve({ fields, files });
+    });
+  });
+};
+
+const parseRequestPayload = async (req) => {
+  const contentType = (req.headers["content-type"] || "").toLowerCase();
+
+  if (contentType.includes("multipart/form-data")) {
+    const { fields, files } = await parseMultipart(req);
+    const attachedFile = Array.isArray(files.file) ? files.file[0] : files.file;
+
+    return {
+      name: firstValue(fields.name),
+      company: firstValue(fields.company),
+      email: firstValue(fields.email),
+      phone: firstValue(fields.phone),
+      subject: firstValue(fields.subject),
+      details: firstValue(fields.details),
+      message: firstValue(fields.message),
+      recaptchaToken: firstValue(fields.recaptchaToken),
+      file: attachedFile || null,
+    };
+  }
+
+  const rawBody = await readRawBody(req);
+  const data = rawBody ? JSON.parse(rawBody) : {};
+
+  return {
+    ...data,
+    file: null,
+  };
+};

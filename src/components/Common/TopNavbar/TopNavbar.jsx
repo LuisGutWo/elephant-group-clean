@@ -5,6 +5,14 @@ import styles from "./TopNavbar.module.css";
 const TopNavbar = ({ mainBg, curve, hidden = false }) => {
   const router = useRouter();
 
+  const whatsappNumber =
+    process.env.NEXT_PUBLIC_WHATSAPP_PHONE ||
+    process.env.NEXT_PUBLIC_WHATSAPP_NUMBER ||
+    "56993239203";
+
+  const buildWhatsAppUrl = (message) =>
+    `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(message)}`;
+
   const handleWhatsAppClick = () => {
     if (typeof window === "undefined" || !window.location) {
       console.error(
@@ -13,7 +21,9 @@ const TopNavbar = ({ mainBg, curve, hidden = false }) => {
       return;
     }
 
-    const url = "https://whatsapp.com?";
+    const url = buildWhatsAppUrl(
+      "Hola, quiero información sobre los servicios de Elephant Group.",
+    );
 
     try {
       window.open(url, "_blank", "noopener noreferrer");

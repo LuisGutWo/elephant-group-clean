@@ -43,7 +43,7 @@ function AcabadosPage() {
         <meta name="author" content="Elephant Group" />
         <link
           rel="canonical"
-          href="https://landingclientes.elephantgroup.cl/services/acabados"
+          href="https://www.elephantgroup.cl/services/acabados"
         />
       </Head>{" "}
       <Navbar mainBg />
@@ -58,3 +58,4 @@ function AcabadosPage() {
 AcabadosPage.getLayout = (page) => <Layout>{page}</Layout>;
 
 export default AcabadosPage;
+

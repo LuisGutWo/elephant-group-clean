@@ -42,7 +42,7 @@ function LetrerosPage() {
         <meta name="author" content="Elephant Group" />
         <link
           rel="canonical"
-          href="https://landingclientes.elephantgroup.cl/services/letreros"
+          href="https://www.elephantgroup.cl/services/letreros"
         />
       </Head>{" "}
       <Navbar mainBg />
@@ -58,3 +58,4 @@ function LetrerosPage() {
 LetrerosPage.getLayout = (page) => <Layout>{page}</Layout>;
 
 export default LetrerosPage;
+
