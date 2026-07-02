@@ -27,6 +27,21 @@ const WhatsAppButton = () => {
     return () => clearInterval(interval);
   }, []);
 
+  useEffect(() => {
+    if (typeof document === "undefined") return undefined;
+
+    const bodyClass = "wa-expanded";
+    if (isExpanded && !isMinimized) {
+      document.body.classList.add(bodyClass);
+    } else {
+      document.body.classList.remove(bodyClass);
+    }
+
+    return () => {
+      document.body.classList.remove(bodyClass);
+    };
+  }, [isExpanded, isMinimized]);
+
   const whatsappNumber = process.env.NEXT_PUBLIC_WHATSAPP_PHONE;
 
   const quickActions = [

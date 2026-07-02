@@ -7,7 +7,6 @@ import Story from "@/components/InnerPages/About/Story";
 import FooterBottom from "@/components/layout/FooterBottom/FooterBottom";
 import FooterImg from "@/components/layout/FooterImg/FooterImg";
 import Footer from "@/components/layout/Footer";
-import HeaderContact from "@/components/InnerPages/Contact/ContactHeader";
 
 function QuotePage() {
   useEffect(() => {
@@ -48,10 +47,17 @@ function QuotePage() {
       <main>
         <Header
           data={headerMetadata}
-          background="/assets/light/imgs/background/viña-del-mar.webp"
+          background="/images/background/viña-del-mar.jpg"
+          backgroundAlt="Imagen de Viña del Mar, ciudad de la V Región de Chile"
+          backgroundPosition="center"
+          backgroundSize="cover"
+          backgroundOverlay="rgba(0, 0, 0, 0.5)"
+          xs={{ padding: "6rem 1rem 2rem", textAlign: "center" }}
+          md={{ padding: "8rem 2rem 3rem", textAlign: "center" }}
+          lg={{ padding: "10rem 3rem 4rem", textAlign: "center" }}
         />
+
         <Story />
-        <HeaderContact />
         <FooterImg />
         <Footer />
       </main>

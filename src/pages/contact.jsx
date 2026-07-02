@@ -3,7 +3,7 @@ import Layout from "@/components/layout/Layout";
 import SeoHead from "@/components/layout/SeoHead";
 import { schemaBreadcrumb } from "@/lib/schema";
 import MainNavbar from "@/components/Common/MainNavbar";
-import { Footer, FooterBottom, FooterImg } from "@/components/layout";
+import { FooterBottom } from "@/components/layout";
 import ContactHeader from "@/components/InnerPages/Contact/ContactHeader";
 import Form from "@/components/InnerPages/Contact";
 
@@ -31,8 +31,6 @@ export default function ContactPage() {
         <ContactHeader />
         <Form />
       </main>
-      <FooterImg />
-      <Footer />
       <FooterBottom />
     </>
   );

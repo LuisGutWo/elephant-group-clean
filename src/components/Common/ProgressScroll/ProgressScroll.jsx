@@ -10,9 +10,9 @@ const ProgressScroll = () => {
   }, []);
 
   return (
-    <div
+    <button
+      type="button"
       className={`${styles.progressWrap} progress-wrap`}
-      role="button"
       aria-label="Volver al inicio de la página"
     >
       <span className={styles.arrowIcon} aria-hidden="true">
@@ -27,7 +27,7 @@ const ProgressScroll = () => {
         </svg>
       </span>
       {progressCircleSvg}
-    </div>
+    </button>
   );
 };
 

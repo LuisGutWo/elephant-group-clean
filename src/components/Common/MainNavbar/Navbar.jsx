@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { useRouter } from "next/router";
@@ -11,6 +11,12 @@ function MainNavbar({ mainBg, subBg, noStatic, curve }) {
   const [isOpen, setIsOpen] = useState(false);
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const isHomeRoute = router.pathname === "/" || router.pathname === "/home";
+  const productsDropdownRef = useRef(null);
+
+  const closeMenus = () => {
+    setIsDropdownOpen(false);
+    setIsOpen(false);
+  };
 
   useEffect(() => {
     const handleScroll = () => {
@@ -23,6 +29,31 @@ function MainNavbar({ mainBg, subBg, noStatic, curve }) {
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
+
+  useEffect(() => {
+    if (!isDropdownOpen) return undefined;
+
+    const handlePointerDownOutside = (event) => {
+      if (!productsDropdownRef.current) return;
+      if (!productsDropdownRef.current.contains(event.target)) {
+        setIsDropdownOpen(false);
+      }
+    };
+
+    const handleEscape = (event) => {
+      if (event.key === "Escape") {
+        setIsDropdownOpen(false);
+      }
+    };
+
+    document.addEventListener("pointerdown", handlePointerDownOutside);
+    document.addEventListener("keydown", handleEscape);
+
+    return () => {
+      document.removeEventListener("pointerdown", handlePointerDownOutside);
+      document.removeEventListener("keydown", handleEscape);
+    };
+  }, [isDropdownOpen]);
 
   const toggleNavbar = () => setIsOpen(!isOpen);
 
@@ -81,6 +112,7 @@ function MainNavbar({ mainBg, subBg, noStatic, curve }) {
                   role="menuitem"
                   aria-label="Ir a página de inicio"
                   aria-current={isHomeRoute ? "page" : undefined}
+                  onClick={closeMenus}
                 >
                   <span className={styles.rollingText}>INICIO</span>
                 </Link>
@@ -88,6 +120,7 @@ function MainNavbar({ mainBg, subBg, noStatic, curve }) {
 
               <li
                 className={`${styles.navItem} ${styles.dropdown}`}
+                ref={productsDropdownRef}
                 onMouseEnter={() => setIsDropdownOpen(true)}
                 onMouseLeave={() => setIsDropdownOpen(false)}
                 role="none"
@@ -119,6 +152,7 @@ function MainNavbar({ mainBg, subBg, noStatic, curve }) {
                       }`}
                       href="/services/letreros"
                       role="menuitem"
+                      onClick={closeMenus}
                       aria-current={
                         router.pathname === "/services/letreros"
                           ? "page"
@@ -137,6 +171,7 @@ function MainNavbar({ mainBg, subBg, noStatic, curve }) {
                       }`}
                       href="/services/senaleticas"
                       role="menuitem"
+                      onClick={closeMenus}
                       aria-current={
                         router.pathname === "/services/senaleticas"
                           ? "page"
@@ -155,6 +190,7 @@ function MainNavbar({ mainBg, subBg, noStatic, curve }) {
                       }`}
                       href="/services/adhesivos"
                       role="menuitem"
+                      onClick={closeMenus}
                       aria-current={
                         router.pathname === "/services/adhesivos"
                           ? "page"
@@ -175,6 +211,7 @@ function MainNavbar({ mainBg, subBg, noStatic, curve }) {
                   href="/quote"
                   role="menuitem"
                   aria-label="Solicitar cotización de servicios"
+                  onClick={closeMenus}
                   aria-current={
                     router.pathname === "/quote" ? "page" : undefined
                   }
@@ -190,6 +227,7 @@ function MainNavbar({ mainBg, subBg, noStatic, curve }) {
                   href="/contact"
                   role="menuitem"
                   aria-label="Contactar con Elephant Group"
+                  onClick={closeMenus}
                   aria-current={
                     router.pathname === "/contact" ? "page" : undefined
                   }

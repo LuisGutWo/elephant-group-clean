@@ -9,7 +9,9 @@ export default function ContactHeader() {
     >
       <div
         className={styles.backgroundImg}
-        style={{ backgroundImage: "url(/images/header/banner_impresion.webp)" }}
+        style={{
+          backgroundImage: "url(/images/header/banner-senaleticas.webp)",
+        }}
         aria-hidden="true"
       />
       <div className={styles.container}>

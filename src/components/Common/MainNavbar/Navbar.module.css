@@ -43,8 +43,9 @@
   margin: 0 auto;
   padding: 0 var(--space-md);
   min-height: var(--mainnav-height);
-  display: grid;
-  grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
   align-items: center;
 }
 
@@ -55,7 +56,7 @@
 }
 
 .logoImg {
-  height: auto;
+  height: 2.3rem;
   width: auto;
 }
 
@@ -109,12 +110,32 @@
 
 .navLink {
   color: var(--text-color);
-  font-weight: 500;
-  font-size: 0.85rem;
-  letter-spacing: 1px;
+  font-weight: 800;
+  font-size: 0.8rem;
+  letter-spacing: 1.3px;
   position: relative;
   padding: var(--space-sm) 0;
   display: block;
+}
+
+.navLink::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  height: 2px;
+  background-color: var(--color-accent);
+  transform: scaleX(0);
+  transform-origin: right;
+  transition: transform 0.3s ease;
+}
+.navLink:hover::after {
+  transform: scaleX(1);
+  transform-origin: left;
+}
+.navLink:hover {
+  color: var(--color-accent);
 }
 
 .navTrigger {
@@ -194,7 +215,7 @@
     width: 100%;
     background-color: var(--bg-color);
     padding: var(--space-md);
-    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.05);
+    box-shadow: 0 10px 20px var(--color-bg-darkalt);
     justify-self: stretch;
   }
 
@@ -215,6 +236,10 @@
     box-shadow: none;
     padding-left: var(--space-md);
     display: none;
+  }
+
+  .dropdownMenu.showDropdown {
+    display: block;
   }
 
   .dropdown:hover .dropdownMenu {

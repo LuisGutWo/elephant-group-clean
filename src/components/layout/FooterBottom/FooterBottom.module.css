@@ -1,6 +1,6 @@
 .footerBottom {
   width: 100%;
-  background-color: #151515;
+  background-color: var(--color-primary);
   border-top: 1px solid rgba(255, 255, 255, 0.05);
   padding: var(--space-lg) 0;
   font-family: var(--font-primary);
@@ -26,17 +26,17 @@
 }
 
 .footerLink {
-  color: #999999;
+  color: var(--color-text-light);
   font-size: 0.8rem;
   transition: color 0.2s ease;
 }
 
 .footerLink:hover {
-  color: #c9961a;
+  color: var(--color-accent);
 }
 
 .separator {
-  color: rgba(255, 255, 255, 0.15);
+  color: var(--color-text-light);
   font-size: 0.8rem;
   user-select: none;
 }
@@ -54,7 +54,7 @@
 }
 
 .copyright {
-  color: #666666;
+  color: var(--color-text-muted);
   font-size: 0.75rem;
   text-align: center;
 }

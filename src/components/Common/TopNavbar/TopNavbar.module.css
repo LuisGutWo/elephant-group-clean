@@ -1,6 +1,6 @@
 .topNavbar {
   --topbar-height: 2.5rem;
-  background-color: #25282a;
+  background-color: var(--color-primary);
   min-height: var(--topbar-height);
   width: 100%;
   display: flex;
@@ -46,14 +46,14 @@
 }
 
 .socialLink {
-  color: #c9961a;
+  color: var(--color-accent);
   display: flex;
   align-items: center;
   transition: color 0.2s ease;
 }
 
 .socialLink:hover {
-  color: var(--color-accent);
+  color: var(--color-accent-bright);
 }
 
 .iconSvg {
